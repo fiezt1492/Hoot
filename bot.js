@@ -236,7 +236,7 @@ const commandJsonData = [
 
 		console.log(
 			`Successfully reloaded ${
-				dev === "on" ? "guild " + test_guild_id : "global"
+				client.config.dev === "on" ? "guild " + client.config.test_guild_id : "global"
 			} application (/) commands.`
 		);
 	} catch (error) {
