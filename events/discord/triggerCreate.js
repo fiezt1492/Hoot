@@ -1,25 +1,9 @@
-/**
- * @file Main trigger handler file.
- * @author Naman Vrati
- * @since 2.0.0
- * @version 3.2.2
- */
+
 
 module.exports = {
 	name: "messageCreate",
-
-	/**
-	 * @description Executes when a message is created and handle it.
-	 * @author Naman Vrati
-	 * @param {import('discord.js').Message & { client: import('../typings').Client }} message The message which was created.
-	 */
-
+	skip: true,
 	async execute(message) {
-		/**
-		 * @type {String[]}
-		 * @description The Message Content of the received message seperated by spaces (' ') in an array, this excludes prefix and command/alias itself.
-		 */
-
 		const args = message.content.split(/ +/);
 
 		// Checks if the trigger author is a bot. Comment this line if you want to reply to bots as well.

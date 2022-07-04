@@ -1,18 +1,8 @@
-/**
- * @file Sample help command with slash command.
- * @author Naman Vrati & Thomas Fournier
- * @since 3.0.0
- * @version 3.2.2
- */
-
 // Deconstructed the constants we need in this file.
 
 const { MessageEmbed } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 
-/**
- * @type {import('../../../typings').SlashInteractionCommand}
- */
 module.exports = {
 	// The data needed to register slash commands to Discord.
 

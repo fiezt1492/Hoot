@@ -1,19 +1,5 @@
-/**
- * @file Button Interaction Handler
- * @author Naman Vrati
- * @since 3.0.0
- * @version 3.2.2
- */
-
 module.exports = {
 	name: "interactionCreate",
-
-	/**
-	 * @description Executes when an interaction is created and handle it.
-	 * @author Naman Vrati
-	 * @param {import('discord.js').ButtonInteraction & { client: import('../typings').Client }} interaction The interaction which was created
-	 */
-
 	async execute(interaction) {
 		// Deconstructed client from interaction object.
 		const { client } = interaction;
@@ -28,7 +14,7 @@ module.exports = {
 		// You can modify the error message at ./messages/defaultButtonError.js file!
 
 		if (!command) {
-			await require("../messages/defaultButtonError").execute(interaction);
+			await require("../../messages/defaultButtonError").execute(interaction);
 			return;
 		}
 

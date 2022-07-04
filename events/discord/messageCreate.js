@@ -8,7 +8,7 @@
 // Declares constants (destructured) to be used in this file.
 
 const { Collection } = require("discord.js");
-const { prefix, owner } = require("../config.json");
+const { prefix, owner } = require("../../config.json");
 
 // Prefix regex, we will use to match in mention prefix.
 
@@ -18,11 +18,12 @@ const escapeRegex = (string) => {
 
 module.exports = {
 	name: "messageCreate",
+	skip: true,
 
 	/**
 	 * @description Executes when a message is created and handle it.
 	 * @author Naman Vrati
-	 * @param {import('discord.js').Message & { client: import('../typings').Client }} message The message which was created.
+	 * @param {import('discord.js').Message & { client: import('../../typings').Client }} message The message which was created.
 	 */
 
 	async execute(message) {
@@ -37,7 +38,7 @@ module.exports = {
 			message.content == `<@${client.user.id}>` ||
 			message.content == `<@!${client.user.id}>`
 		) {
-			require("../messages/onMention").execute(message);
+			require("../../messages/onMention").execute(message);
 			return;
 		}
 

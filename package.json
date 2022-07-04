@@ -1,8 +1,8 @@
 {
-	"name": "discordbot-template",
-	"version": "3.2.2",
-	"description": "A modified template based on discordjs.guide to create your own discord-js based bot!",
-	"funding": "https://ko-fi.com/namanvrati",
+	"name": "dustibe",
+	"version": "0.0.1",
+	"description": "a music discord bot",
+	"funding": "https://ko-fi.com/fiezt",
 	"types": "./typings.d.ts",
 	"main": "bot.js",
 	"scripts": {
@@ -11,25 +11,20 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/NamVr/DiscordBot-Template.git"
+		"url": "git+https://github.com/fiezt1492/DusTibe.git"
 	},
 	"keywords": [
 		"discord-js"
 	],
 	"author": {
-		"name": "Naman Vrati",
-		"url": "https://github.com/NamVr",
-		"email": "info@namanvrati.cf"
+		"name": "Fiezt",
+		"url": "https://github.com/fiezt1492",
+		"email": "fiezt@pm.me"
 	},
 	"contributors": [
 		{
-			"name": "Krish Garg",
-			"url": "https://github.com/KrishGarg"
-		},
-		{
-			"name": "Thomas Fournier",
-			"email": "thomas@artivain.com",
-			"url": "https://github.com/GoudronViande24"
+			"name": "NamVr",
+			"url": "https://github.com/NamVr"
 		}
 	],
 	"license": "ISC",
@@ -39,9 +34,17 @@
 	"homepage": "https://github.com/NamVr/DiscordBot-Template#readme",
 	"dependencies": {
 		"@discordjs/builders": "^0.15.0",
+		"@discordjs/opus": "^0.8.0",
 		"@discordjs/rest": "^0.5.0",
-		"discord-api-types": "^0.33.5",
-		"discord.js": "^13.8.0"
+		"@distube/soundcloud": "^1.1.0",
+		"@distube/spotify": "^1.2.1",
+		"@distube/yt-dlp": "^1.0.2",
+		"discord-api-types": "^0.35.0",
+		"discord-button-page": "^6.2.0",
+		"discord.js": "^13.8.1",
+		"distube": "^3.3.4",
+		"libsodium-wrappers": "^0.7.10",
+		"millify": "^4.0.0"
 	},
 	"devDependencies": {
 		"nodemon": "^2.0.16"
