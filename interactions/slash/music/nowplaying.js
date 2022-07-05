@@ -54,7 +54,10 @@ module.exports = {
 			.setColor("RANDOM")
 			.setTitle(`${song.name} - ${song.formattedDuration}`)
 			.setURL(song.url)
-			.setThumbnail(song.thumbnail);
+			.setThumbnail(song.thumbnail)
+			.setFooter({
+				text: `${client.status(queue)}`,
+			});
 
 		if (descriptionArray.length)
 			Embed.setDescription(descriptionArray.join(" | "));

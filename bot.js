@@ -279,6 +279,8 @@ const status = (queue) =>
 			: "Off"
 	} | Autoplay: ${queue.autoplay ? "On" : "Off"}`;
 
+client.status = status;
+
 const distubeEventFiles = fs
 	.readdirSync("./events/distube")
 	.filter((file) => file.endsWith(".js"));
