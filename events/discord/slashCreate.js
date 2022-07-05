@@ -23,6 +23,16 @@ module.exports = {
 			});
 		}
 
+		// if (
+		// 	command.sameVoiceChannel &&
+		// 	interaction.member.voice.channelId !==
+		// 		interaction.guild.me.voice.channelId
+		// )
+		// 	return interaction.reply({
+		// 		content: `${client.emotes.error} | You must be in a same voice channel as me!`,
+		// 		ephemeral: true,
+		// 	});
+
 		try {
 			await command.execute(interaction);
 		} catch (err) {
