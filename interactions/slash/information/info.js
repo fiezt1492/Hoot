@@ -54,16 +54,28 @@ module.exports = {
 			)
 			.setColor("RANDOM")
 			.setThumbnail(client.user.displayAvatarURL())
-			.addField("OSP", "```" + operatingSystemPlatform + "```", true)
-			.addField("CPU", "```" + cpuModel + "```", true)
+			.addField(
+				"SYSTEM",
+				"```" + `OS: ${operatingSystemPlatform}\nCPU: ${cpuModel}` + "```",
+				true
+			)
 			.addField(
 				"MEMORY",
 				"```" + `SYSTEM: ${sysMemoryUsage}\nPROCESS: ${processField}` + "```",
 				true
 			)
-			.addField("NODEJS", "```" + process.version + "```", true)
-			.addField("DISCORD.JS", "```" + Discord.version + "```", true)
-			.addField("GUILDS", "```" + guildSize + "```", true)
+			.addField(
+				"Version",
+				`\`\`\`Node.js: ${process.version}\nDiscord.js: ${Discord.version}\nDisTube.js: ${client.distube.version}\`\`\``,
+				true
+			)
+			.addField(
+				"SIZES",
+				"```" +
+					`Guilds: ${guildSize}\nPlaying/Connected: ${client.distube.queues.collection.size}/${client.distube.voices.collection.size}` +
+					"```",
+				true
+			)
 			.setFooter({ text: `https://owlvernyte.tk` });
 
 		return await interaction.reply({

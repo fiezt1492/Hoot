@@ -8,7 +8,7 @@ module.exports = {
 
 	data: new SlashCommandBuilder()
 		.setName("search")
-		.setDescription("Resume the queue")
+		.setDescription("Search for a queue")
 		.addStringOption((option) =>
 			option
 				.setName("query")
