@@ -22,9 +22,11 @@ module.exports = {
 				ephemeral: true,
 			});
 
-		const np = queue.songs.shift();
+		const songs = [...queue.songs];
 
-		const q = queue.songs.map(
+		const np = songs.shift();
+
+		const q = songs.map(
 			(song, i) =>
 				`${`\`${i + 1}\`. [${song.name}](${song.url}) - \`${
 					song.formattedDuration
