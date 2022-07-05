@@ -31,8 +31,8 @@ module.exports = {
 				}\``}`
 		);
 
-        const totalSongs = q.length
-        
+		const totalSongs = q.length;
+
 		const tempArray = [];
 		while (q.length) {
 			tempArray.push(q.splice(0, 10));

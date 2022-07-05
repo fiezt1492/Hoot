@@ -17,8 +17,7 @@ module.exports = {
 					.setAuthor({
 						name: `${playlist.user.tag}`,
 						iconURL: `${playlist.user.displayAvatarURL()}`,
-					})
-					.setFooter({ text: `${status(queue)}` }),
+					}),
 			],
 		});
 	},

@@ -15,16 +15,18 @@ module.exports = {
 				.setDescription("Select a voice channel")
 				.addChannelTypes(
 					Discord.Constants.ChannelTypes.GUILD_STAGE_VOICE,
-					Discord.Constants.ChannelTypes.GUILD_VOICE,
+					Discord.Constants.ChannelTypes.GUILD_VOICE
 				)
 		),
-	inVoiceChannel: true,
+	// inVoiceChannel: true,
 
 	async execute(interaction) {
 		const { client, message, guild } = interaction;
 
 		let voiceChannel =
-			interaction.options.getChannel("destination") || interaction.channel;
+			interaction.options.getChannel("destination") ||
+			interaction.member.voice.channel ||
+			interaction.channel;
 
 		if (
 			!Discord.Constants.VoiceBasedChannelTypes.includes(voiceChannel?.type)
@@ -36,7 +38,11 @@ module.exports = {
 		}
 
 		interaction.reply({
-			content: `Joined ${voiceChannel}`,
+			embeds: [
+				new MessageEmbed()
+					.setColor("BLURPLE")
+					.setDescription(`Joined ${voiceChannel}`),
+			],
 			// ephemeral: true,
 		});
 

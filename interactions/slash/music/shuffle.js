@@ -7,8 +7,8 @@ module.exports = {
 	// The data needed to register slash commands to Discord.
 
 	data: new SlashCommandBuilder()
-		.setName("stop")
-		.setDescription("Stop the queue"),
+		.setName("shuffle")
+		.setDescription("Shuffle the queue"),
 	inVoiceChannel: true,
 
 	async execute(interaction) {
@@ -22,11 +22,13 @@ module.exports = {
 				ephemeral: true,
 			});
 
-		queue.stop();
+		queue.shuffle();
 
 		interaction.reply({
 			embeds: [
-				new MessageEmbed().setColor("RED").setTitle("Stopped the queue!"),
+				new MessageEmbed()
+					.setColor("BLURPLE")
+					.setTitle("Shuffled songs in queue!"),
 			],
 		});
 	},

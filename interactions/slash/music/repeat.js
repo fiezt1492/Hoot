@@ -7,8 +7,19 @@ module.exports = {
 	// The data needed to register slash commands to Discord.
 
 	data: new SlashCommandBuilder()
-		.setName("stop")
-		.setDescription("Stop the queue"),
+		.setName("repeat")
+		.setDescription("Set repeat mode")
+		.addStringOption((option) =>
+			option
+				.setName("mode")
+				.setDescription("Repeat mode")
+				.setRequired(true)
+				.addChoices(
+					{ name: "Off", value: "0" },
+					{ name: "Song", value: "1" },
+					{ name: "Queue", value: "2" }
+				)
+		),
 	inVoiceChannel: true,
 
 	async execute(interaction) {
@@ -22,11 +33,17 @@ module.exports = {
 				ephemeral: true,
 			});
 
-		queue.stop();
+		let mode = parseInt(interaction.options.getString("mode"));
+
+		mode = queue.setRepeatMode(mode);
+
+		mode = mode ? (mode === 2 ? "Repeat queue" : "Repeat song") : "Off";
 
 		interaction.reply({
 			embeds: [
-				new MessageEmbed().setColor("RED").setTitle("Stopped the queue!"),
+				new MessageEmbed()
+					.setColor("RANDOM")
+					.setDescription(`Set repeat mode to \`${mode}\``),
 			],
 		});
 	},

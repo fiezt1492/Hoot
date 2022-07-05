@@ -7,8 +7,14 @@ module.exports = {
 	// The data needed to register slash commands to Discord.
 
 	data: new SlashCommandBuilder()
-		.setName("stop")
-		.setDescription("Stop the queue"),
+		.setName("seek")
+		.setDescription("Seek to a position of song")
+		.addIntegerOption((option) =>
+			option
+				.setName("time")
+				.setDescription("Position in seconds")
+				.setRequired(true)
+		),
 	inVoiceChannel: true,
 
 	async execute(interaction) {
@@ -22,11 +28,15 @@ module.exports = {
 				ephemeral: true,
 			});
 
-		queue.stop();
+		const time = interaction.options.getInteger("time");
+
+		queue.seek(time);
 
 		interaction.reply({
 			embeds: [
-				new MessageEmbed().setColor("RED").setTitle("Stopped the queue!"),
+				new MessageEmbed()
+					.setColor("RANDOM")
+					.setDescription(`Seeked to \`${time}\``),
 			],
 		});
 	},

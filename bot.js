@@ -58,7 +58,7 @@ client.distube = new DisTube(client, {
 	leaveOnStop: false,
 	emitNewSongOnly: true,
 	emitAddSongWhenCreatingQueue: false,
-	emitAddListWhenCreatingQueue: false,
+	emitAddListWhenCreatingQueue: true,
 	plugins: [
 		new SpotifyPlugin({
 			emitEventsAfterFetching: true,

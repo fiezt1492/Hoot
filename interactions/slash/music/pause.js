@@ -7,8 +7,8 @@ module.exports = {
 	// The data needed to register slash commands to Discord.
 
 	data: new SlashCommandBuilder()
-		.setName("stop")
-		.setDescription("Stop the queue"),
+		.setName("pause")
+		.setDescription("Pause the queue"),
 	inVoiceChannel: true,
 
 	async execute(interaction) {
@@ -22,11 +22,28 @@ module.exports = {
 				ephemeral: true,
 			});
 
-		queue.stop();
+		if (queue.pause) {
+			queue.resume();
+			return interaction.reply({
+				embeds: [
+					new MessageEmbed()
+						.setColor("BLURPLE")
+						.setTitle("Resumed the song!")
+						.setAuthor({
+							name: `${interaction.user.tag}`,
+							iconURL: `${interaction.user.displayAvatarURL()}`,
+						}),
+				],
+			});
+		}
+
+		queue.pause();
 
 		interaction.reply({
 			embeds: [
-				new MessageEmbed().setColor("RED").setTitle("Stopped the queue!"),
+				new MessageEmbed()
+					.setColor("RED")
+					.setTitle("Paused the song!"),
 			],
 		});
 	},

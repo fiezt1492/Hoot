@@ -19,6 +19,7 @@ module.exports = {
 		if (command.inVoiceChannel && !interaction.member.voice.channel) {
 			return interaction.reply({
 				content: `${client.emotes.error} | You must be in a voice channel!`,
+				ephemeral: true,
 			});
 		}
 

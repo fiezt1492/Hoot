@@ -13,6 +13,7 @@ module.exports = {
 
 	async execute(interaction) {
 		const { client, message, guild } = interaction;
+		
 		client.distube.voices.leave(guild);
 
 		interaction.reply({

@@ -7,8 +7,8 @@ module.exports = {
 	// The data needed to register slash commands to Discord.
 
 	data: new SlashCommandBuilder()
-		.setName("stop")
-		.setDescription("Stop the queue"),
+		.setName("previous")
+		.setDescription("Play previous song"),
 	inVoiceChannel: true,
 
 	async execute(interaction) {
@@ -22,11 +22,19 @@ module.exports = {
 				ephemeral: true,
 			});
 
-		queue.stop();
+		const song = queue.previous();
 
 		interaction.reply({
 			embeds: [
-				new MessageEmbed().setColor("RED").setTitle("Stopped the queue!"),
+				new MessageEmbed()
+					.setColor("RANDOM")
+					.setTitle(song.name)
+					.setURL(song.url)
+					.setDescription(`Played previous song!`)
+					.setAuthor({
+						name: `${song.user.tag}`,
+						iconURL: `${song.user.displayAvatarURL()}`,
+					}),
 			],
 		});
 	},

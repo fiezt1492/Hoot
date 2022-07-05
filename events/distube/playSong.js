@@ -5,11 +5,12 @@ module.exports = {
 	execute(queue, song, client, status) {
 		const Embed = new MessageEmbed()
 			.setColor("RANDOM")
-			.setTitle(song.name)
+			.setAuthor({
+				name: `${song.user.tag}`,
+				iconURL: `${song.user.displayAvatarURL()}`,
+			})
+			.setTitle(song.name + " - " + song.formattedDuration)
 			.setURL(song.url)
-			.setDescription(
-				`Duration: ${song.formattedDuration}\nRequested by: ${song.user}`
-			)
 			.setThumbnail(song.thumbnail)
 			.setFooter({
 				text: `${status(queue)}`,

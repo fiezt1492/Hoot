@@ -1,6 +1,6 @@
 // Deconstructed the constants we need in this file.
 
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed, Constants } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
@@ -9,34 +9,50 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName("play")
 		.setDescription("Play music")
-		.addBooleanOption((option) =>
-			option
-				.setName("skip")
-				.setDescription("Whether to skip the current song or not")
-		)
 		.addStringOption((option) =>
 			option
 				.setName("query")
 				.setDescription("Song name or URL")
 				.setRequired(true)
+		)
+		.addBooleanOption((option) =>
+			option
+				.setName("skip")
+				.setDescription("Whether to skip the current song or not")
+		)
+		.addChannelOption((option) =>
+			option
+				.setName("destination")
+				.setDescription("Select a voice channel")
+				.addChannelTypes(
+					Constants.ChannelTypes.GUILD_STAGE_VOICE,
+					Constants.ChannelTypes.GUILD_VOICE
+				)
 		),
 	inVoiceChannel: true,
 
 	async execute(interaction) {
-		let name = interaction.options.getString("query");
-		let skip = interaction.options.getBoolean("skip");
-		// const helpEmbed = new MessageEmbed().setColor(0x4286f4);
+		const name = interaction.options.getString("query");
+		const skip = interaction.options.getBoolean("skip");
+		const voiceChannel =
+			interaction.options.getChannel("destination") ||
+			interaction.member.voice.channel;
 
-		// helpEmbed.setTitle(`Help for \`${name}\` command`);
+		// if (!Constants.VoiceBasedChannelTypes.includes(voiceChannel?.type)) {
+		// 	return interaction.reply({
+		// 		content: `${client.emotes.error} | ${voiceChannel} is not a valid voice channel!`,
+		// 		ephemeral: true,
+		// 	});
+		// }
 
-		interaction.client.distube.play(interaction.member.voice.channel, name, {
+		interaction.client.distube.play(voiceChannel, name, {
 			member: interaction.member,
 			textChannel: interaction.channel,
 			skip: skip,
 		});
 
 		await interaction.reply({
-			content: `Finding \`${name}\`...`,
+			content: `Querying \`${name}\`...`,
 			ephemeral: true,
 		});
 	},
