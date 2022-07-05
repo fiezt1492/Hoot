@@ -34,8 +34,10 @@ module.exports = {
 			interaction.reply({
 				embeds: [Embed],
 			});
-		} catch (e) {
-			Embed.setDescription(`${client.emotes.error} | ${e}`).setColor("RED");
+		} catch (error) {
+			Embed.setDescription(
+				`${client.emotes.error} | ${error.message}`
+			).setColor("RED");
 			interaction.reply({
 				embeds: [Embed],
 				ephemeral: true,

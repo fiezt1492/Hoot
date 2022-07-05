@@ -31,13 +31,25 @@ module.exports = {
 
 		const time = interaction.options.getInteger("time");
 
+		if (time > queue.songs[0].duration)
+			return interaction.reply({
+				embeds: [
+					new MessageEmbed()
+						.setColor("ERROR")
+						.setDescription(
+							`The time you entered (second \`${time}\`) is bigger than the song duration (\`${queue.songs[0].duration}\`)`
+						),
+				],
+				ephemeral: true,
+			});
+
 		queue.seek(time);
 
 		interaction.reply({
 			embeds: [
 				new MessageEmbed()
 					.setColor("RANDOM")
-					.setDescription(`Seeked to \`${time}\``),
+					.setDescription(`Seeked to second \`${time}\``),
 			],
 		});
 	},

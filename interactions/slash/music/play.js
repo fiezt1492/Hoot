@@ -11,7 +11,7 @@ module.exports = {
 		.setDescription("Play music")
 		.addStringOption((option) =>
 			option
-				.setName("query")
+				.setName("song")
 				.setDescription("Song name or URL")
 				.setRequired(true)
 		)
@@ -32,7 +32,7 @@ module.exports = {
 	inVoiceChannel: true,
 
 	async execute(interaction) {
-		const name = interaction.options.getString("query");
+		const name = interaction.options.getString("song");
 		const skip = interaction.options.getBoolean("skip");
 		const voiceChannel =
 			interaction.options.getChannel("destination") ||
@@ -52,7 +52,7 @@ module.exports = {
 		});
 
 		await interaction.reply({
-			content: `Querying \`${name}\`...`,
+			content: `Finding \`${name}\`...`,
 			ephemeral: true,
 		});
 	},
