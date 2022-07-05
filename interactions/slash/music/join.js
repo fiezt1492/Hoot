@@ -39,7 +39,7 @@ module.exports = {
 
 		interaction.reply({
 			embeds: [
-				new MessageEmbed()
+				new Discord.MessageEmbed()
 					.setColor("BLURPLE")
 					.setDescription(`Joined ${voiceChannel}`),
 			],
