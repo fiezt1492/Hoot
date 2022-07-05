@@ -133,8 +133,8 @@ for (const folder of contextMenus) {
 		.filter((file) => file.endsWith(".js"));
 	for (const file of files) {
 		const menu = require(`./interactions/context-menus/${folder}/${file}`);
-		if (client.config.dev !== "on" && command.dev) continue;
-		if (command.skip) continue;
+		if (client.config.dev !== "on" && menu.dev) continue;
+		if (menu.skip) continue;
 		const keyName = `${folder.toUpperCase()} ${menu.data.name}`;
 		client.contextCommands.set(keyName, menu);
 	}
