@@ -72,7 +72,7 @@ module.exports = {
 			.addField(
 				"SIZES",
 				"```" +
-					`Guilds: ${guildSize}\nPlaying/Connected: ${client.distube.queues.collection.size}/${client.distube.voices.collection.size}` +
+					`Shards: ${client.shard.count}\nServers: ${guildSize}\nPlaying/Connected: ${client.distube.queues.collection.size}/${client.distube.voices.collection.size}` +
 					"```",
 				true
 			)
