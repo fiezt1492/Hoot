@@ -7,13 +7,14 @@ module.exports = {
 	// The data needed to register slash commands to Discord.
 
 	data: new SlashCommandBuilder()
-		.setName("seek")
+		.setName("volume")
 		.setDescription("Seek to a position of song")
 		.addIntegerOption((option) =>
 			option
-				.setName("time")
-				.setMinValue(0)
+				.setName("amount")
 				.setDescription("Position in seconds")
+				.setMinValue(0)
+				.setMaxValue(100)
 				.setRequired(true)
 		),
 	inVoiceChannel: true,
@@ -29,15 +30,15 @@ module.exports = {
 				ephemeral: true,
 			});
 
-		const time = interaction.options.getInteger("time");
+		const amount = interaction.options.getInteger("amount");
 
-		queue.seek(time);
+		queue.setVolume(amount);
 
 		interaction.reply({
 			embeds: [
 				new MessageEmbed()
 					.setColor("RANDOM")
-					.setDescription(`Seeked to \`${time}\``),
+					.setDescription(`Volume set to \`${amount}\``),
 			],
 		});
 	},
