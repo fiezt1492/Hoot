@@ -18,16 +18,8 @@ module.exports = {
 		),
 
 	async execute(interaction) {
-		/**
-		 * @type {string}
-		 * @description The "command" argument
-		 */
 		let name = interaction.options.getString("command");
 
-		/**
-		 * @type {MessageEmbed}
-		 * @description Help command's embed
-		 */
 		const helpEmbed = new MessageEmbed().setColor(0x4286f4);
 
 		if (name) {

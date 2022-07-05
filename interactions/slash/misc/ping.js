@@ -8,7 +8,7 @@ module.exports = {
 	// The data needed to register slash commands to Discord.
 	data: new SlashCommandBuilder()
 		.setName("ping")
-		.setDescription("Show bot's uptime and latency"),
+		.setDescription("🏓 Gather a pong!"),
 	category: "information",
 	async execute(interaction) {
 		const { client } = interaction;
