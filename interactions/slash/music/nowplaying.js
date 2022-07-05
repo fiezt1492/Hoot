@@ -23,7 +23,7 @@ module.exports = {
 				ephemeral: true,
 			});
 
-		const song = queue.songs.shift();
+		const song = queue.songs[0];
 
 		const descriptionArray = [];
 

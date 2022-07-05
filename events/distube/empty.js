@@ -2,8 +2,8 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
 	name: "empty",
-	execute(channel, client, status) {
-		channel.send({
+	execute(queue, client, status) {
+		queue.textChannel.send({
 			embeds: [
 				new MessageEmbed()
 					.setColor("RED")
