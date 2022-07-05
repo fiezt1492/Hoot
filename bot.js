@@ -110,6 +110,7 @@ for (const module of slashCommands) {
 	for (const commandFile of commandFiles) {
 		const command = require(`./interactions/slash/${module}/${commandFile}`);
 		if (client.config.dev !== "on" && command.dev) continue;
+		if (command.skip) continue;
 		if (command.maintain || command.guildOwner)
 			command.data.setDefaultPermission(false);
 		if (command.dm && command.dm == true) command.data.setDMPermission(true);
@@ -132,6 +133,8 @@ for (const folder of contextMenus) {
 		.filter((file) => file.endsWith(".js"));
 	for (const file of files) {
 		const menu = require(`./interactions/context-menus/${folder}/${file}`);
+		if (client.config.dev !== "on" && command.dev) continue;
+		if (command.skip) continue;
 		const keyName = `${folder.toUpperCase()} ${menu.data.name}`;
 		client.contextCommands.set(keyName, menu);
 	}
