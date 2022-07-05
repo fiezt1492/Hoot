@@ -9,6 +9,11 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName("play")
 		.setDescription("Play music")
+		.addBooleanOption((option) =>
+			option
+				.setName("skip")
+				.setDescription("Whether to skip the current song or not")
+		)
 		.addStringOption((option) =>
 			option
 				.setName("query")
@@ -19,6 +24,7 @@ module.exports = {
 
 	async execute(interaction) {
 		let name = interaction.options.getString("query");
+		let skip = interaction.options.getBoolean("skip");
 		// const helpEmbed = new MessageEmbed().setColor(0x4286f4);
 
 		// helpEmbed.setTitle(`Help for \`${name}\` command`);
@@ -26,6 +32,7 @@ module.exports = {
 		interaction.client.distube.play(interaction.member.voice.channel, name, {
 			member: interaction.member,
 			textChannel: interaction.channel,
+			skip: skip,
 		});
 
 		await interaction.reply({

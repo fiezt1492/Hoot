@@ -232,11 +232,32 @@ const commandJsonData = [
 			await rest.put(Routes.applicationCommands(client.config.client_id), {
 				body: commandJsonData,
 			});
+
+			rest
+				.get(
+					Routes.applicationGuildCommands(
+						client.config.client_id,
+						client.config.test_guild_id
+					)
+				)
+				.then((data) => {
+					const promises = [];
+					for (const command of data) {
+						const deleteUrl = `${Routes.applicationGuildCommands(
+							client.config.client_id,
+							client.config.test_guild_id
+						)}/${command.id}`;
+						promises.push(rest.delete(deleteUrl));
+					}
+					return Promise.all(promises);
+				});
 		}
 
 		console.log(
 			`Successfully reloaded ${
-				client.config.dev === "on" ? "guild " + client.config.test_guild_id : "global"
+				client.config.dev === "on"
+					? "guild " + client.config.test_guild_id
+					: "global"
 			} application (/) commands.`
 		);
 	} catch (error) {
