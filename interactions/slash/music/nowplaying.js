@@ -52,11 +52,11 @@ module.exports = {
 
 		const Embed = new MessageEmbed()
 			.setColor("RANDOM")
-			.setTitle(`${song.name} - ${song.formattedDuration}`)
+			.setTitle(`${song.name}`)
 			.setURL(song.url)
 			.setThumbnail(song.thumbnail)
 			.setFooter({
-				text: `${client.status(queue)}`,
+				text: `${song.formattedDuration} | ${client.status(queue)}`,
 			});
 
 		if (descriptionArray.length)

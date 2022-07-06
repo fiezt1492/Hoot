@@ -9,11 +9,11 @@ module.exports = {
 				name: `${song.user.tag}`,
 				iconURL: `${song.user.displayAvatarURL()}`,
 			})
-			.setTitle(song.name + " - " + song.formattedDuration)
+			.setTitle(song.name)
 			.setURL(song.url)
 			.setThumbnail(song.thumbnail)
 			.setFooter({
-				text: `${status(queue)}`,
+				text: `${song.formattedDuration} | ${status(queue)}`,
 			});
 
 		queue.textChannel.send({

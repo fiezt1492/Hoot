@@ -6,28 +6,28 @@ module.exports = {
 	execute(client) {
 		console.log(`Ready! Logged in as ${client.user.tag}`);
 
-		client.user.setActivity(`music`, { type: ActivityType.Listening });
+		client.user.setActivity(`music | /play`, { type: ActivityType.Listening });
 
 		setInterval(() => {
 			const statuses = [
 				{
-					name: `${client.guilds.cache.size} servers`,
+					name: `${client.guilds.cache.size} servers | /play`,
 					type: ActivityType.Watching,
 				},
 				{
-					name: `${client.channels.cache.size} channels`,
+					name: `${client.channels.cache.size} channels | /play`,
 					type: ActivityType.Watching,
 				},
 				{
-					name: `music`,
+					name: `music | /play`,
 					type: ActivityType.Listening,
 				},
 				{
-					name: `/play`,
+					name: `hooooooooooooot | /play`,
 					type: ActivityType.Playing,
 				},
 				{
-					name: `music in ${client.distube.queues.collection.size} servers`,
+					name: `music in ${client.distube.queues.collection.size} servers | /play`,
 					type: ActivityType.Playing,
 				},
 			];
