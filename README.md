@@ -16,11 +16,14 @@
   </p>
 </p>
 
-![Contributors](https://img.shields.io/github/contributors/fiezt1492/Hoot?color=dark-green) ![Forks](https://img.shields.io/github/forks/fiezt1492/Hoot?style=social) ![Stargazers](https://img.shields.io/github/stars/fiezt1492/Hoot?style=social) ![Issues](https://img.shields.io/github/issues/fiezt1492/Hoot) ![License](https://img.shields.io/github/license/fiezt1492/Hoot) 
+
+<div style="text-align: center;">
+
+![Contributors](https://img.shields.io/github/contributors/fiezt1492/Hoot?color=dark-green) ![Forks](https://img.shields.io/github/forks/fiezt1492/Hoot?style=social) ![Stargazers](https://img.shields.io/github/stars/fiezt1492/Hoot?style=social) ![Issues](https://img.shields.io/github/issues/fiezt1492/Hoot) ![License](https://img.shields.io/github/license/fiezt1492/Hoot)
+
+</div>
 
 ## Built With
-
-
 
 * [Node.js](https://nodejs.org/)
 * [Discord.js](https://discord.js.org/)
@@ -28,10 +31,11 @@
 
 ## Getting Started
 
-
 ### Installation
 
-[<img src="https://cdn.discordapp.com/attachments/699540846621753404/994199071784972438/logo-white-3.png" width="50px"/>](https://top.gg/bot/804616628359921684) | [<img src="https://cdn.discordapp.com/attachments/699540846621753404/994198076598259812/Discord-LogoWordmark-Color.png" width="50px"/> (Restricted)](https://discord.com/api/oauth2/authorize?client_id=804616628359921684&permissions=532977937745&scope=bot%20applications.commands) | [<img src="https://cdn.discordapp.com/attachments/699540846621753404/994198076598259812/Discord-LogoWordmark-Color.png" width="50px"/> (Unrestricted)](https://discord.com/api/oauth2/authorize?client_id=804616628359921684&permissions=8&scope=bot%20applications.commands)
+| <div style="text-align: center;"> [<img src="https://cdn.discordapp.com/attachments/699540846621753404/994199071784972438/logo-white-3.png" width="100px"/>](https://top.gg/bot/804616628359921684) </div>  | <div style="text-align: center;"> [<img src="https://cdn.discordapp.com/attachments/699540846621753404/994198076598259812/Discord-LogoWordmark-Color.png" width="100px"/> </div>](https://discord.com/api/oauth2/authorize?client_id=804616628359921684&permissions=532977937745&scope=bot%20applications.commands)  | [<div style="text-align: center;"> <img src="https://cdn.discordapp.com/attachments/699540846621753404/994198076598259812/Discord-LogoWordmark-Color.png" width="100px"/> </div>](https://discord.com/api/oauth2/authorize?client_id=804616628359921684&permissions=8&scope=bot%20applications.commands)  |
+|--------- |----- |----- |
+| <div style="text-align: center;"> [Top.gg](https://top.gg/bot/804616628359921684)   </div>  | <div style="text-align: center;"> [OAuth2 (Restricted)](https://discord.com/api/oauth2/authorize?client_id=804616628359921684&permissions=532977937745&scope=bot%20applications.commands) </div> | <div style="text-align: center;"> [OAuth2 (Unrestricted)](https://discord.com/api/oauth2/authorize?client_id=804616628359921684&permissions=8&scope=bot%20applications.commands) </div> |
 
 ## Usage
 
@@ -42,7 +46,8 @@ _For more examples, please refer to the [Documentation](https://owlvernyte.tk)_
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-* If you have suggestions for adding or removing projects, feel free to [open an issue](https://github.com/fiezt1492/Hoot/issues/new) to discuss it, or directly create a pull request after you edit the *README.md* file with necessary changes.
+
+* If you have suggestions for adding or removing projects, feel free to [open an issue](https://github.com/fiezt1492/Hoot/issues/new) to discuss it, or directly create a pull request after you edit the _README.md_ file with necessary changes.
 * Please make sure you check your spelling and grammar.
 * Create individual PR for each suggestion.
 * Please also read through the [Code Of Conduct](https://github.com/fiezt1492/Hoot/blob/main/CODE_OF_CONDUCT.md) before posting your first idea as well.
@@ -61,7 +66,7 @@ Distributed under the MIT License. See [LICENSE](https://github.com/fiezt1492/Ho
 
 ## Authors
 
-* **Fiezt** - *HUTECH Student* - [Fiezt](https://github.com/fiezt1492/) - *Bot Dev*
+* **Fiezt** - _HUTECH Student_ - [Fiezt](https://github.com/fiezt1492/) - _Bot Dev_
 
 ## Acknowledgements
 
