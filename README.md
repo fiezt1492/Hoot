@@ -31,7 +31,7 @@
 
 ### Installation
 
-[Top.gg](https://top.gg/bot/804616628359921684) | [Discord OAuth2 (Recommend)](https://discord.com/api/oauth2/authorize?client_id=804616628359921684&permissions=532977937745&scope=bot%20applications.commands) | [Discord OAuth2 (Unrestricted)](https://discord.com/api/oauth2/authorize?client_id=804616628359921684&permissions=8&scope=bot%20applications.commands)
+[<img src="https://cdn.discordapp.com/attachments/699540846621753404/994199071784972438/logo-white-3.png" width="50px"/>](https://top.gg/bot/804616628359921684) | [<img src="https://cdn.discordapp.com/attachments/699540846621753404/994198076598259812/Discord-LogoWordmark-Color.png" width="50px"/> (Restricted)](https://discord.com/api/oauth2/authorize?client_id=804616628359921684&permissions=532977937745&scope=bot%20applications.commands) | [<img src="https://cdn.discordapp.com/attachments/699540846621753404/994198076598259812/Discord-LogoWordmark-Color.png" width="50px"/> (Unrestricted)](https://discord.com/api/oauth2/authorize?client_id=804616628359921684&permissions=8&scope=bot%20applications.commands)
 
 ## Usage
 
