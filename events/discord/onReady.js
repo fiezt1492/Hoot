@@ -5,6 +5,9 @@ module.exports = {
 	once: true,
 	execute(client) {
 		console.log(`Ready! Logged in as ${client.user.tag}`);
+
+		client.user.setActivity(`music`, { type: ActivityType.Listening });
+
 		setInterval(() => {
 			const statuses = [
 				{
@@ -30,6 +33,7 @@ module.exports = {
 			];
 
 			const status = statuses[Math.floor(Math.random() * statuses.length)];
+			
 			client.user.setActivity(status.name, { type: status.type });
 		}, 7200000);
 	},
