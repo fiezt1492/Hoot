@@ -12,7 +12,7 @@
     <br/>
     <a href="https://github.com/fiezt1492/Hoot/issues">Report Bug</a>
     .
-    <a href="https://github.com/fiezt1492/Hoot/issues">Request Feature</a>
+    <a href="https://discord.gg/F7ZK6ssMUm">Request Feature</a>
   </p>
 </p>
 
