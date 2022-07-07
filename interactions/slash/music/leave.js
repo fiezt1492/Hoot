@@ -13,11 +13,13 @@ module.exports = {
 
 	async execute(interaction) {
 		const { client, message, guild } = interaction;
-		
+
 		client.distube.voices.leave(guild);
 
+		const Embed = new MessageEmbed().setColor("BLURPLE").setDescription("See yah!")
+
 		interaction.reply({
-			embeds: [new MessageEmbed().setColor("BLURPLE").setTitle("Bye")],
+			embeds: [Embed],
 		});
 	},
 };

@@ -27,17 +27,18 @@ module.exports = {
 		try {
 			const song = await queue.skip();
 
-			Embed.setDescription(
-				`${client.emotes.success} | Skipped! Now playing:\n${song.name}`
-			).setColor("GREEN");
+			Embed.setColor("GREEN")
+				.setDescription(`${client.emotes.success} | Skipped!`)
+				.addField(`Now Playing`, `[\`${song.name}\`](${song.url})`);
 
 			interaction.reply({
 				embeds: [Embed],
 			});
 		} catch (error) {
-			Embed.setDescription(
-				`${client.emotes.error} | ${error.message}`
-			).setColor("RED");
+			Embed.setColor("RED")
+				.setTitle("ERROR")
+				.setDescription(`${error.message}`);
+				
 			interaction.reply({
 				embeds: [Embed],
 				ephemeral: true,

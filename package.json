@@ -1,6 +1,6 @@
 {
-	"name": "dustibe",
-	"version": "0.0.1",
+	"name": "hoot",
+	"version": "0.0.2",
 	"description": "a music discord bot",
 	"funding": "https://ko-fi.com/fiezt",
 	"types": "./typings.d.ts",
@@ -11,7 +11,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/fiezt1492/DusTibe.git"
+		"url": "git+https://github.com/fiezt1492/Hoot.git"
 	},
 	"keywords": [
 		"discord-js"

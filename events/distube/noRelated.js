@@ -1,14 +1,12 @@
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
-	name: "finish",
+	name: "noRelated",
 	execute(queue, client, status) {
 		const Embed = new MessageEmbed()
 			.setColor("RED")
-			.setDescription(
-				"This is the end of queue. Add more with `play` command."
-			);
-			
+			.setDescription("Can't find related video to play.");
+
 		queue.textChannel.send({
 			embeds: [Embed],
 		});
