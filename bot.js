@@ -68,14 +68,14 @@ client.distube = new DisTube(client, {
 	],
 	youtubeDL: false,
 });
-client.commands = new Collection();
+// client.commands = new Collection();
 client.slashCommands = new Collection();
 client.buttonCommands = new Collection();
 client.selectCommands = new Collection();
 client.contextCommands = new Collection();
 client.modalCommands = new Collection();
 client.cooldowns = new Collection();
-client.triggers = new Collection();
+// client.triggers = new Collection();
 client.emotes = client.config.emoji;
 
 // /**********************************************************************/
