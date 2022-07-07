@@ -1,7 +1,7 @@
 <br/>
 <p align="center">
   <a href="https://github.com/fiezt1492/Hoot">
-    <img src="https://cdn.discordapp.com/avatars/804616628359921684/27bb1fb5ffd9392fb6444862fba72e33.png" alt="Logo" width="80" height="80">
+    <img src="https://cdn.discordapp.com/avatars/804616628359921684/037a1936c98ad47f7d14c07808e62d9e.webp" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Hoot</h3>
