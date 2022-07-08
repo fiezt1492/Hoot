@@ -22,7 +22,7 @@ module.exports = {
 				ephemeral: true,
 			});
 
-		if (queue.pause) {
+		if (queue.paused) {
 			queue.resume();
 			return interaction.reply({
 				embeds: [

@@ -4,8 +4,7 @@ module.exports = {
 	name: "addSong",
 	execute(queue, song, client, status) {
 		const Embed = new MessageEmbed()
-			.setColor("RED")
-			.setTitle(`ERROR`)
+			.setColor("RANDOM")
 			.setDescription(
 				`Added **[${song.name}](${song.url})** - \`${
 					song.formattedDuration

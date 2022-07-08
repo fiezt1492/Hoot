@@ -2,15 +2,24 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
 	name: "finish",
-	execute(queue, client, status) {
+	async execute(queue, client, status) {
 		const Embed = new MessageEmbed()
 			.setColor("RED")
 			.setDescription(
 				"This is the end of queue. Add more with `play` command."
 			);
-			
-		queue.textChannel.send({
-			embeds: [Embed],
-		});
+
+			try {
+				const oldPanel = await queue.textChannel.messages.fetch(queue.panelId);
+				if (oldPanel && oldPanel.editable)
+					oldPanel.edit({
+						embeds: [Embed],
+						components: [],
+					});
+			} catch (error) {
+				queue.textChannel.send({
+					embeds: [Embed],
+				});
+			}
 	},
 };

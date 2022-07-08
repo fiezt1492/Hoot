@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
 	name: "disconnect",
-	execute(queue, client, status) {
+	async execute(queue, client, status) {
 		// const Embed = new MessageEmbed()
 		// 	.setColor("RED")
 		// 	.setTitle(`ERROR`)
@@ -11,7 +11,15 @@ module.exports = {
 		// queue.textChannel.send({
 		// 	embeds: [Embed],
 		// });
-
-        console.log(queue);
+		try {
+			if (queue.panelId) {
+				const oldPanel = await queue.textChannel.messages.fetch(queue.panelId);
+				if (oldPanel && oldPanel.deletable) oldPanel.delete();
+			}
+		} catch (error) {
+			console.error(error);
+		}
+		
+		// console.log(queue);
 	},
 };

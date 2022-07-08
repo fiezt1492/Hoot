@@ -8,7 +8,7 @@ module.exports = {
 			.setTitle(`ERROR`)
 			.setDescription(`No result found for \`${query}\`!`);
 			
-		message.channel.sendd({
+		message.channel.send({
 			embeds: [Embed],
 		});
 	},

@@ -2,22 +2,26 @@ const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 
 module.exports = {
 	name: "playSong",
-	execute(queue, song, client, status) {
-		const Embed = new MessageEmbed()
-			.setColor("RANDOM")
-			.setAuthor({
-				name: `${song.user.tag}`,
-				iconURL: `${song.user.displayAvatarURL()}`,
-			})
-			.setTitle(song.name)
-			.setURL(song.url)
-			.setThumbnail(song.thumbnail)
-			.setFooter({
-				text: `${song.formattedDuration} | ${status(queue)}`,
-			});
+	async execute(queue, song, client, status) {
+		const Embed = require("../../constants/embeds/panel")(song, queue, client);
 
-		queue.textChannel.send({
-			embeds: [Embed],
+		const components = require("../../constants/components/panel")(
+			false,
+			queue,
+			client
+		);
+
+		if (queue.panelId) {
+			const oldPanel = await queue.textChannel.messages.fetch(queue.panelId);
+			if (oldPanel && oldPanel.deletable) oldPanel.delete();
+		}
+
+		const msg = await queue.textChannel.send({
+			embeds: Embed,
+			components: components,
 		});
+
+		queue.panelId = msg.id;
+		// console.log(queue.panelId);
 	},
 };

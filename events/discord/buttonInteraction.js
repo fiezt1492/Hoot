@@ -26,11 +26,18 @@ module.exports = {
 				"search8",
 				"search9",
 			];
-			
+
 			if (refuseCustomIds.includes(interaction.customId)) return;
 
 			await require("../../messages/defaultButtonError").execute(interaction);
 			return;
+		}
+
+		if (command.inVoiceChannel && !interaction.member.voice.channel) {
+			return interaction.reply({
+				content: `${client.emotes.error} | You must be in a voice channel!`,
+				ephemeral: true,
+			});
 		}
 
 		// A try to execute the interaction.
