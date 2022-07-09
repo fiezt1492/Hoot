@@ -15,8 +15,8 @@ module.exports = {
 					type: ActivityType.Watching,
 				},
 				{
-					name: `${client.channels.cache.size} channels | /play`,
-					type: ActivityType.Watching,
+					name: `hoot.owlvernyte.tk | /play`,
+					type: ActivityType.Playing,
 				},
 				{
 					name: `music | /play`,
