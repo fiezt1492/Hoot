@@ -14,21 +14,6 @@ module.exports = {
 		// You can modify the error message at ./messages/defaultButtonError.js file!
 
 		if (!command) {
-			const refuseCustomIds = [
-				"search0",
-				"search1",
-				"search2",
-				"search3",
-				"search4",
-				"search5",
-				"search6",
-				"search7",
-				"search8",
-				"search9",
-			];
-
-			if (refuseCustomIds.includes(interaction.customId)) return;
-
 			await require("../../messages/defaultButtonError").execute(interaction);
 			return;
 		}
