@@ -1,5 +1,5 @@
 // Deconstructed the constants we need in this file.
-const DisTube = require("DisTube");
+// const DisTube = require("DisTube");
 const { MessageEmbed, Constants } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 
