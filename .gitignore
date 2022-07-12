@@ -2,6 +2,7 @@
 deleteguildslash.js
 /config.json
 .vscode/
+json.sqlite
 
 # Logs
 logs

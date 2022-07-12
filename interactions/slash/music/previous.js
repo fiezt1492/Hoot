@@ -10,7 +10,7 @@ module.exports = {
 		.setName("previous")
 		.setDescription("Play previous song"),
 	inVoiceChannel: true,
-
+	category: "music",
 	async execute(interaction) {
 		const { client, message, guild } = interaction;
 

@@ -10,13 +10,15 @@ module.exports = {
 		.setName("leave")
 		.setDescription("Leave the current voice"),
 	inVoiceChannel: true,
-
+	category: "music",
 	async execute(interaction) {
 		const { client, message, guild } = interaction;
 
 		client.distube.voices.leave(guild);
 
-		const Embed = new MessageEmbed().setColor("BLURPLE").setDescription("See yah!")
+		const Embed = new MessageEmbed()
+			.setColor("BLURPLE")
+			.setDescription("See yah!");
 
 		interaction.reply({
 			embeds: [Embed],

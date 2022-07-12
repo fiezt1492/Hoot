@@ -10,7 +10,7 @@ module.exports = {
 		.setName("skip")
 		.setDescription("Skip currently playing song"),
 	inVoiceChannel: true,
-
+	category: "music",
 	async execute(interaction) {
 		const { client, message, guild } = interaction;
 
@@ -38,7 +38,7 @@ module.exports = {
 			Embed.setColor("RED")
 				.setTitle("ERROR")
 				.setDescription(`${error.message}`);
-				
+
 			interaction.reply({
 				embeds: [Embed],
 				ephemeral: true,

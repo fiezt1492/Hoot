@@ -1,7 +1,9 @@
 // Deconstructed the constants we need in this file.
-const { InteractionButtonPages } = require("discord-button-page");
-const { MessageEmbed } = require("discord.js");
+
+const pageModule = require("../../../modules/util/page");
+const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
+const _ = require("lodash");
 
 module.exports = {
 	// The data needed to register slash commands to Discord.
@@ -10,7 +12,7 @@ module.exports = {
 		.setName("queue")
 		.setDescription("Shows music queue"),
 	inVoiceChannel: true,
-
+	category: "music",
 	async execute(interaction) {
 		const { client, message, guild } = interaction;
 
@@ -34,13 +36,9 @@ module.exports = {
 		);
 
 		const totalSongs = q.length;
+		const splittedSongs = _.chunk(q, 10);
 
-		const tempArray = [];
-		while (q.length) {
-			tempArray.push(q.splice(0, 10));
-		}
-
-		const pages = tempArray.map((c) =>
+		const pages = splittedSongs.map((c) =>
 			new MessageEmbed()
 				.setTitle(`${totalSongs} songs in queue`)
 				.setDescription(`${c.join("\n")}`)
@@ -68,13 +66,9 @@ module.exports = {
 			return interaction.reply({
 				embeds: pages,
 			});
-
-		const embedPages = new InteractionButtonPages()
-			.setDuration(300000)
-			.setEmbeds(pages)
-			.setCountPage(true)
-			.setColorButton(["SECONDARY", "DANGER", "SECONDARY"]);
-
-		embedPages.build(interaction);
+		else {
+			const filter = (i) => i.user.id == interaction.user.id;
+			pageModule(interaction, pages, 60000, true, filter);
+		}
 	},
 };

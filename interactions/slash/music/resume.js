@@ -10,7 +10,7 @@ module.exports = {
 		.setName("resume")
 		.setDescription("Resume the queue"),
 	inVoiceChannel: true,
-
+	category: "music",
 	async execute(interaction) {
 		const { client, message, guild } = interaction;
 
@@ -26,9 +26,7 @@ module.exports = {
 
 		interaction.reply({
 			embeds: [
-				new MessageEmbed()
-					.setColor("BLURPLE")
-					.setTitle("Resumed the song!"),
+				new MessageEmbed().setColor("BLURPLE").setTitle("Resumed the song!"),
 			],
 		});
 	},

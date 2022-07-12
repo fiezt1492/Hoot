@@ -3,12 +3,30 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
 	name: "addSong",
 	execute(queue, song, client, status) {
+		if (queue.songs.length - 1 > client.maxSongs) {
+			queue.songs.splice(client.maxSongs + 1).length;
+			return queue.textChannel.send({
+				embeds: [
+					new MessageEmbed()
+						.setColor("RED")
+						.setTitle("FAILED TO ADD SONG")
+						.setDescription(
+							`Cannot add [\`${song.name}\`](${song.url}) to queue as your queue length meets limitation (\`${client.maxSongs}\`).`
+						),
+				],
+			});
+		}
+
 		const Embed = new MessageEmbed()
 			.setColor("RANDOM")
 			.setDescription(
 				`Added **[${song.name}](${song.url})** - \`${
 					song.formattedDuration
-				}\` to the queue at position \`${queue.songs.length - 1}\``
+				}\` to the queue${
+					queue.songs.length <= 1
+						? ""
+						: ` at position \`${queue.songs.length - 1}\``
+				}`
 			)
 			.setAuthor({
 				name: `${song.user.tag}`,

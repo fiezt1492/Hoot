@@ -78,7 +78,7 @@ module.exports = {
 			)
 			.setFooter({ text: `https://owlvernyte.tk` });
 
-		return await interaction.reply({
+		await interaction.reply({
 			embeds: [Embed],
 		});
 	},

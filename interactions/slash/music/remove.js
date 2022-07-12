@@ -17,7 +17,7 @@ module.exports = {
 				.setRequired(true)
 		),
 	inVoiceChannel: true,
-
+	category: "music",
 	async execute(interaction) {
 		const { client, message, guild } = interaction;
 
@@ -46,7 +46,7 @@ module.exports = {
 			});
 
 		const removed = queue.songs.splice(position, 1).shift();
-        
+
 		interaction.reply({
 			embeds: [
 				new MessageEmbed()

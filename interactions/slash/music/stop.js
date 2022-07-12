@@ -10,7 +10,7 @@ module.exports = {
 		.setName("stop")
 		.setDescription("Stop the queue"),
 	inVoiceChannel: true,
-
+	category: "music",
 	async execute(interaction) {
 		const { client, message, guild } = interaction;
 

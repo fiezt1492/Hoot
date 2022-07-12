@@ -1,5 +1,5 @@
 module.exports = {
-	id: "next",
+	id: "back-page",
 	async execute(interaction) {
 		return;
 	},

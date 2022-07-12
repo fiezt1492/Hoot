@@ -11,7 +11,7 @@ module.exports = {
 		.setName("nowplaying")
 		.setDescription("Whats the playing song?"),
 	inVoiceChannel: true,
-
+	category: "music",
 	async execute(interaction) {
 		const { client, message, guild } = interaction;
 

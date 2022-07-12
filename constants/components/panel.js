@@ -21,6 +21,11 @@ module.exports = (state, queue, client) => [
 			.setCustomId("shuffle")
 			.setDisabled(state)
 			.setEmoji(client.emotes.shuffle)
+			.setStyle("SECONDARY"),
+		new MessageButton()
+			.setCustomId("favorite")
+			.setDisabled(true)
+			.setEmoji(client.emotes.favorite)
 			.setStyle("SECONDARY")
 	),
 	new MessageActionRow().addComponents(
@@ -49,6 +54,11 @@ module.exports = (state, queue, client) => [
 						: client.emotes.loop.song
 					: client.emotes.loop.queue
 			)
-			.setStyle(queue.repeatMode ? "SECONDARY" : "DANGER")
+			.setStyle(queue.repeatMode ? "SECONDARY" : "DANGER"),
+		new MessageButton()
+			.setCustomId("lyrics")
+			.setDisabled(state)
+			.setEmoji(client.emotes.lyrics)
+			.setStyle("SECONDARY")
 	),
 ];

@@ -4,10 +4,11 @@ const fs = require("fs");
 const { Client, Collection, Intents } = require("discord.js");
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v10");
-const { DisTube } = require("distube");
+const { DisTube, ExtractorPlugin } = require("distube");
 const { SpotifyPlugin } = require("@distube/spotify");
 const { SoundCloudPlugin } = require("@distube/soundcloud");
 const { YtDlpPlugin } = require("@distube/yt-dlp");
+const { QuickDB } = require("quick.db");
 
 const intents = [
 	"GUILDS",
@@ -56,15 +57,16 @@ for (const file of eventFiles) {
 client.config = require("./config.json");
 client.distube = new DisTube(client, {
 	leaveOnStop: false,
-	emitNewSongOnly: true,
-	emitAddSongWhenCreatingQueue: false,
-	emitAddListWhenCreatingQueue: true,
+	// emitNewSongOnly: true,
+	// emitAddSongWhenCreatingQueue: false,
+	// emitAddListWhenCreatingQueue: true,
 	plugins: [
 		new SpotifyPlugin({
 			emitEventsAfterFetching: true,
 		}),
 		new SoundCloudPlugin(),
 		new YtDlpPlugin(),
+		new ExtractorPlugin(),
 	],
 	youtubeDL: false,
 });
@@ -77,6 +79,8 @@ client.modalCommands = new Collection();
 client.cooldowns = new Collection();
 // client.triggers = new Collection();
 client.emotes = client.config.emoji;
+client.maxSongs = 100;
+client.db = new QuickDB();
 
 // /**********************************************************************/
 // // Registration of Message-Based Legacy Commands.
@@ -300,6 +304,8 @@ for (const file of distubeEventFiles) {
 		);
 	}
 }
+
+client.on("debug", console.log).on("warn", console.log);
 
 // Login into your client application with bot's token.
 

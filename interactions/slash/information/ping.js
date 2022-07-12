@@ -47,8 +47,6 @@ module.exports = {
 				text: `${interaction.guild.name}'s Shard: #${interaction.guild.shardId}`,
 			});
 
-		// const embed = new Discord.MessageEmbed().setColor("RANDOM");
-
 		await interaction.reply({
 			embeds: [Embed],
 		});

@@ -17,7 +17,7 @@ module.exports = {
 				.setRequired(true)
 		),
 	inVoiceChannel: true,
-
+	category: "music",
 	async execute(interaction) {
 		const { client, message, guild } = interaction;
 

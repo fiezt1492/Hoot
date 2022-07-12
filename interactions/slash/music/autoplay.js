@@ -9,6 +9,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName("autoplay")
 		.setDescription("Toggle autoplay mode"),
+	category: "music",
 	inVoiceChannel: true,
 
 	async execute(interaction) {

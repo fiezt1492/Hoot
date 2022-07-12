@@ -1,5 +1,5 @@
 // Deconstructed the constants we need in this file.
-
+const DisTube = require("DisTube");
 const { MessageEmbed, Constants } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 
@@ -30,9 +30,10 @@ module.exports = {
 				)
 		),
 	inVoiceChannel: true,
-
+	category: "music",
 	async execute(interaction) {
-		const name = interaction.options.getString("song");
+		const { client } = interaction;
+		const songName = interaction.options.getString("song");
 		const skip = interaction.options.getBoolean("skip");
 		const voiceChannel =
 			interaction.options.getChannel("destination") ||
@@ -45,14 +46,14 @@ module.exports = {
 		// 	});
 		// }
 
-		interaction.client.distube.play(voiceChannel, name, {
+		interaction.client.distube.play(voiceChannel, songName, {
 			member: interaction.member,
 			textChannel: interaction.channel,
 			skip: skip,
 		});
 
 		await interaction.reply({
-			content: `Finding \`${name}\`...`,
+			content: `Finding \`${songName}\`...`,
 			ephemeral: true,
 		});
 	},

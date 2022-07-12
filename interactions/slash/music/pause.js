@@ -10,7 +10,7 @@ module.exports = {
 		.setName("pause")
 		.setDescription("Pause the queue"),
 	inVoiceChannel: true,
-
+	category: "music",
 	async execute(interaction) {
 		const { client, message, guild } = interaction;
 
@@ -40,11 +40,7 @@ module.exports = {
 		queue.pause();
 
 		interaction.reply({
-			embeds: [
-				new MessageEmbed()
-					.setColor("RED")
-					.setTitle("Paused the song!"),
-			],
+			embeds: [new MessageEmbed().setColor("RED").setTitle("Paused the song!")],
 		});
 	},
 };

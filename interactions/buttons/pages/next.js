@@ -1,5 +1,5 @@
 module.exports = {
-	id: "stop",
+	id: "next-page",
 	async execute(interaction) {
 		return;
 	},
