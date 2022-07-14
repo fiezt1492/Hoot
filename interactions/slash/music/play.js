@@ -13,6 +13,7 @@ module.exports = {
 			option
 				.setName("song")
 				.setDescription("Song name or URL")
+				.setAutocomplete(true)
 				.setRequired(true)
 		)
 		.addBooleanOption((option) =>
@@ -56,5 +57,19 @@ module.exports = {
 			content: `Finding \`${songName}\`...`,
 			ephemeral: true,
 		});
+	},
+	async autocomplete(interaction) {
+		const { client, guild } = interaction;
+
+		const focusedValue = interaction.options.getFocused();
+		// console.log(focusedValue);
+		const searchResults = await client.distube.search(focusedValue);
+
+		await interaction.respond(
+			searchResults.map((result) => ({
+				name: `${result.name}`,
+				value: `${result.url}`,
+			}))
+		);
 	},
 };

@@ -2,6 +2,7 @@
 
 const { MessageEmbed } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
+const sequelize = require("sequelize");
 
 module.exports = {
 	// The data needed to register slash commands to Discord.
@@ -21,6 +22,8 @@ module.exports = {
 				content: `${client.emotes.error} | There is nothing playing!`,
 				ephemeral: true,
 			});
+
+		const membersInVoice = interaction.member.voice.channel.members
 
 		const Embed = new MessageEmbed();
 

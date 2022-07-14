@@ -8,7 +8,7 @@ const { DisTube, ExtractorPlugin } = require("distube");
 const { SpotifyPlugin } = require("@distube/spotify");
 const { SoundCloudPlugin } = require("@distube/soundcloud");
 const { YtDlpPlugin } = require("@distube/yt-dlp");
-const { QuickDB } = require("quick.db");
+const DB = require("./database/models");
 
 const intents = [
 	"GUILDS",
@@ -80,7 +80,7 @@ client.cooldowns = new Collection();
 // client.triggers = new Collection();
 client.emotes = client.config.emoji;
 client.maxSongs = 100;
-client.db = new QuickDB();
+client.db = DB;
 
 // /**********************************************************************/
 // // Registration of Message-Based Legacy Commands.

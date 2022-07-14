@@ -8,6 +8,12 @@ module.exports = {
 
 		client.user.setActivity(`music | /play`, { type: ActivityType.Listening });
 
+		// if (client.isReady())
+		// 	for (const model in client.db) {
+		// 		model.sync();
+		// 		console.log("[DB READY] Synced ");
+		// 	}
+
 		setInterval(() => {
 			const statuses = [
 				{
@@ -33,7 +39,7 @@ module.exports = {
 			];
 
 			const status = statuses[Math.floor(Math.random() * statuses.length)];
-			
+
 			client.user.setActivity(status.name, { type: status.type });
 		}, 7200000);
 	},
