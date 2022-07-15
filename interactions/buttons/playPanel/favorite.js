@@ -30,12 +30,12 @@ module.exports = {
 		const components = (state) => [
 			new MessageActionRow().addComponents(
 				new MessageButton()
-					.setCustomId("favoriteYes")
+					.setCustomId("voteYes")
 					.setStyle("SUCCESS")
 					.setDisabled(state)
 					.setLabel("Yes"),
 				new MessageButton()
-					.setCustomId("favoriteNo")
+					.setCustomId("voteNo")
 					.setStyle("DANGER")
 					.setDisabled(state)
 					.setLabel("No")
@@ -60,7 +60,7 @@ module.exports = {
 			});
 			const msg = await interaction.fetchReply();
 			const filter = (i) =>
-				(i.customId === "favoriteYes" || i.customId === "favoriteNo") &&
+				(i.customId === "voteYes" || i.customId === "voteNo") &&
 				i.user.id === interaction.user.id;
 			msg
 				.awaitMessageComponent({ filter, time: 30_000 })

@@ -43,7 +43,7 @@ module.exports = {
 		const { client, guild } = interaction;
 
 		const focusedValue = interaction.options.getFocused();
-		// console.log(focusedValue);
+		
 		const searchResults = await client.distube.search(focusedValue);
 
 		await interaction.respond(

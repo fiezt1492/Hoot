@@ -1,6 +1,6 @@
 // Deconstructed the constants we need in this file.
 
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const sequelize = require("sequelize");
 
@@ -13,39 +13,6 @@ module.exports = {
 	inVoiceChannel: true,
 	category: "music",
 	async execute(interaction) {
-		const { client, message, guild } = interaction;
-
-		const queue = client.distube.getQueue(guild);
-
-		if (!queue)
-			return interaction.reply({
-				content: `${client.emotes.error} | There is nothing playing!`,
-				ephemeral: true,
-			});
-
-		const membersInVoice = interaction.member.voice.channel.members
-
-		const Embed = new MessageEmbed();
-
-		try {
-			const song = await queue.skip();
-
-			Embed.setColor("GREEN")
-				.setDescription(`${client.emotes.success} | Skipped!`)
-				.addField(`Now Playing`, `[\`${song.name}\`](${song.url})`);
-
-			interaction.reply({
-				embeds: [Embed],
-			});
-		} catch (error) {
-			Embed.setColor("RED")
-				.setTitle("ERROR")
-				.setDescription(`${error.message}`);
-
-			interaction.reply({
-				embeds: [Embed],
-				ephemeral: true,
-			});
-		}
+		require("../../../modules/music/skiprevious")(interaction)
 	},
 };

@@ -11,9 +11,10 @@ module.exports = {
 
 		if (!command.autocomplete) return;
 
-		if (!interaction.options.getFocused()) return;
+		if (!interaction.options.getFocused()) return await interaction.respond([]);
 
-		if (command.inVoiceChannel && !interaction.member.voice.channel) return;
+		if (command.inVoiceChannel && !interaction.member.voice.channel)
+			return await interaction.respond([]);
 
 		try {
 			await command.autocomplete(interaction);
