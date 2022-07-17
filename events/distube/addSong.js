@@ -25,7 +25,7 @@ module.exports = {
 				}\` to the queue${
 					queue.songs.length <= 1
 						? ""
-						: ` at position \`${queue.songs.length - 1}\``
+						: ` at position \`${queue.songs.findIndex((s) => s === song)}\``
 				}`
 			)
 			.setAuthor({
