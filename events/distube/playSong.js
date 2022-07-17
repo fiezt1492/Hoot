@@ -3,9 +3,13 @@ const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 module.exports = {
 	name: "playSong",
 	async execute(queue, song, client, status) {
-		const Embed = require("../../constants/embeds/panel")(song, queue, client);
+		const Embed = require("../../constants/embeds/playPanel")(
+			song,
+			queue,
+			client
+		);
 
-		const components = require("../../constants/components/panel")(
+		const components = require("../../constants/components/playPanel")(
 			false,
 			queue,
 			client
@@ -22,6 +26,5 @@ module.exports = {
 		});
 
 		queue.panelId = msg.id;
-		// console.log(queue.panelId);
 	},
 };

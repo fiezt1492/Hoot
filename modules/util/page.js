@@ -6,11 +6,13 @@ module.exports = async (
 	duration,
 	resetTimer = false,
 	filter,
-	pageNumber = false
+	pageNumber = false,
+	components = [],
+	ephemeral = false
 ) => {
 	try {
-		const row = (state) => [
-			new MessageActionRow().addComponents(
+		const row = (state) => {
+			const pageButtons = new MessageActionRow().addComponents(
 				new MessageButton()
 					.setStyle("SECONDARY")
 					.setEmoji("⬅")
@@ -26,8 +28,11 @@ module.exports = async (
 					.setEmoji("➡")
 					.setDisabled(state)
 					.setCustomId("next-page")
-			),
-		];
+			);
+			if (!components.length) return [pageButtons];
+
+			return [pageButtons, ...components];
+		};
 
 		let currentPage = 0;
 
@@ -42,6 +47,7 @@ module.exports = async (
 							  }),
 					],
 					components: row(false),
+					ephemeral: ephemeral,
 				})
 				.catch((error) => {
 					console.error(error);

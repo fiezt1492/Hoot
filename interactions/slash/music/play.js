@@ -13,7 +13,14 @@ module.exports = {
 			option
 				.setName("song")
 				.setDescription("Song name or URL")
+				.setAutocomplete(true)
 				.setRequired(true)
+		)
+		.addIntegerOption((option) =>
+			option
+				.setName("position")
+				.setDescription("Select the position you want to add to the queue")
+				.setMinValue(1)
 		)
 		.addBooleanOption((option) =>
 			option
@@ -30,31 +37,42 @@ module.exports = {
 				)
 		),
 	inVoiceChannel: true,
+	checkFocused: true,
 	category: "music",
 	async execute(interaction) {
-		const { client } = interaction;
+		const { client, guild } = interaction;
 		const songName = interaction.options.getString("song");
-		const skip = interaction.options.getBoolean("skip");
+		const skip = interaction.options.getBoolean("skip") || false;
+		let position = interaction.options.getInteger("position") || 0;
 		const voiceChannel =
 			interaction.options.getChannel("destination") ||
 			interaction.member.voice.channel;
-
-		// if (!Constants.VoiceBasedChannelTypes.includes(voiceChannel?.type)) {
-		// 	return interaction.reply({
-		// 		content: `${client.emotes.error} | ${voiceChannel} is not a valid voice channel!`,
-		// 		ephemeral: true,
-		// 	});
-		// }
 
 		interaction.client.distube.play(voiceChannel, songName, {
 			member: interaction.member,
 			textChannel: interaction.channel,
 			skip: skip,
+			position: position,
 		});
 
 		await interaction.reply({
 			content: `Finding \`${songName}\`...`,
 			ephemeral: true,
 		});
+	},
+	async autocomplete(interaction) {
+		const { client, guild } = interaction;
+
+		const focusedValue = interaction.options.getFocused();
+		// console.log(focusedValue);
+		const searchResults =
+			(await client.distube.search(focusedValue).catch(() => [])) || [];
+
+		await interaction.respond(
+			searchResults.map((result) => ({
+				name: `${result.name}`,
+				value: `${result.url}`,
+			}))
+		);
 	},
 };

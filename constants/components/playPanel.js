@@ -23,16 +23,16 @@ module.exports = (state, queue, client) => [
 			.setEmoji(client.emotes.shuffle)
 			.setStyle("SECONDARY"),
 		new MessageButton()
-			.setCustomId("favorite")
-			.setDisabled(true)
-			.setEmoji(client.emotes.favorite)
-			.setStyle("SECONDARY")
+			.setCustomId("addtopl")
+			.setDisabled(state)
+			.setEmoji(client.emotes.addtoplaylist)
+			.setStyle("PRIMARY")
 	),
 	new MessageActionRow().addComponents(
 		new MessageButton()
 			.setCustomId("autoplay")
 			.setDisabled(state)
-			.setEmoji(client.emotes.play)
+			.setEmoji("🅰")
 			.setStyle(queue.autoplay ? "SUCCESS" : "DANGER"),
 		new MessageButton()
 			.setCustomId("pre-track")

@@ -8,7 +8,7 @@ const { DisTube, ExtractorPlugin } = require("distube");
 const { SpotifyPlugin } = require("@distube/spotify");
 const { SoundCloudPlugin } = require("@distube/soundcloud");
 const { YtDlpPlugin } = require("@distube/yt-dlp");
-const { QuickDB } = require("quick.db");
+const DB = require("./database/models");
 
 const intents = [
 	"GUILDS",
@@ -77,10 +77,25 @@ client.selectCommands = new Collection();
 client.contextCommands = new Collection();
 client.modalCommands = new Collection();
 client.cooldowns = new Collection();
+client.working = new Collection();
 // client.triggers = new Collection();
 client.emotes = client.config.emoji;
 client.maxSongs = 100;
-client.db = new QuickDB();
+client.db = DB;
+client.util = {};
+
+// util
+const utilFiles = fs
+	.readdirSync("./modules/util")
+	.filter((file) => file.endsWith(".js"));
+
+for (const file of utilFiles) {
+	const utilName = `${file.split(".")[0]}`;
+	const util = require(`./modules/util/${file}`);
+	if (!util) continue;
+	client.util[utilName] = util;
+	console.log(`[UTIL] ${utilName} Util Loaded `);
+}
 
 // /**********************************************************************/
 // // Registration of Message-Based Legacy Commands.

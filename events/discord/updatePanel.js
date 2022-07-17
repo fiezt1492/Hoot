@@ -5,13 +5,13 @@ module.exports = {
 	async execute(interaction, queue) {
 		const { client, guild } = interaction;
 
-		const Embed = require("../../constants/embeds/panel")(
+		const Embed = require("../../constants/embeds/playPanel")(
 			queue.songs[0],
 			queue,
 			client
 		);
 
-		const components = require("../../constants/components/panel")(
+		const components = require("../../constants/components/playPanel")(
 			false,
 			queue,
 			client
