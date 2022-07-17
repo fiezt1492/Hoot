@@ -1,3 +1,9 @@
+const {
+	MessageEmbed,
+	MessageActionRow,
+	MessageButton,
+} = require("discord.js");
+
 module.exports = async (interaction, skip = true) => {
 	const { client, message, guild } = interaction;
 

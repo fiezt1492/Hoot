@@ -31,6 +31,7 @@ module.exports = {
 				)
 		),
 	inVoiceChannel: true,
+	checkFocused: true,
 	category: "music",
 	async execute(interaction) {
 		const { client } = interaction;
@@ -63,7 +64,8 @@ module.exports = {
 
 		const focusedValue = interaction.options.getFocused();
 		// console.log(focusedValue);
-		const searchResults = await client.distube.search(focusedValue);
+		const searchResults =
+			(await client.distube.search(focusedValue).catch(() => [])) || [];
 
 		await interaction.respond(
 			searchResults.map((result) => ({

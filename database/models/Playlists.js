@@ -6,10 +6,10 @@ module.exports = (sequelize) => {
 		playlistOwnerId: {
 			type: DataTypes.STRING,
 			primaryKey: true,
-			references: {
-				model: Users,
-				key: "userId",
-			},
+			// references: {
+			// 	model: Users,
+			// 	key: "userId",
+			// },
 		},
 		playlistId: {
 			type: DataTypes.STRING,

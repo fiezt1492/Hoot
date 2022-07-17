@@ -1,6 +1,4 @@
-// Deconstructed the constants we need in this file.
-
-const pageModule = require("../../../modules/util/page");
+// Deconstructed the constants we need in this file.`
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const _ = require("lodash");
@@ -68,7 +66,7 @@ module.exports = {
 			});
 		else {
 			const filter = (i) => i.user.id == interaction.user.id;
-			pageModule(interaction, pages, 60000, true, filter);
+			client.util.page(interaction, pages, 60000, true, filter);
 		}
 	},
 };

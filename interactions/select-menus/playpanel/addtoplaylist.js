@@ -1,31 +1,28 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 
 module.exports = {
-	id: "favorite",
+	id: "addtopl",
 
 	async execute(interaction) {
 		const { client, guild, message } = interaction;
-		// const queue = client.distube.getQueue(guild);
+		const song = message.embeds[0].url;
 
-		// if (!queue)
-		// 	return interaction.reply({
-		// 		content: `${client.emotes.error} | There is nothing playing!`,
-		// 		ephemeral: true,
-		// 	});
+		const playlistId = interaction.values.shift();
 
-		const [playlist, created] = await client.db.models.Playlists.findOrCreate({
+		const exist = await client.db.models.Playlists.findOne({
 			where: {
 				playlistOwnerId: interaction.user.id,
-				playlistId: `Favorite`,
-			},
-			defaults: {
-				playlistOwnerId: interaction.user.id,
-				playlistId: `Favorite`,
+				playlistId: `${playlistId}`,
 			},
 		});
 
-		const song = message.embeds[0].url;
-		let duplicated = playlist.dataValues.data.songs.includes(song);
+		if (exist === null)
+			return interaction.reply({
+				content: `${client.emotes.error} | This playlist doesn't exist!`,
+				ephemeral: true,
+			});
+
+		let duplicated = exist.dataValues.data.songs.includes(song);
 
 		const components = (state) => [
 			new MessageActionRow().addComponents(
@@ -46,7 +43,7 @@ module.exports = {
 			.setColor("ORANGE")
 			.setTitle(`${client.emotes.warning} CAUTION`)
 			.setDescription(
-				`That song is already been in your **Favorite** playlist! Or you sure you want to add more?`
+				`That song is already been in your **Favorite** playlist! Are you sure that you want to add more?`
 			)
 			.setFooter({
 				text: `You have 30 secs to confirm!`,
@@ -65,18 +62,16 @@ module.exports = {
 			msg
 				.awaitMessageComponent({ filter, time: 30_000 })
 				.then(async (i) => {
-					// console.log(i);
-					// if (msg.deletable) msg.delete();
-					if (i.customId === "favoriteNo") {
+					if (i.customId === "voteNo") {
 						i.update({
 							content: `${client.emotes.error} | Cancelled!`,
 							embeds: [],
 							components: [],
 							ephemeral: true,
 						});
-					} else if (i.customId === "favoriteYes") {
+					} else if (i.customId === "voteYes") {
 						i.update({
-							content: `${await addToFav()}`,
+							content: `${await addSong()}`,
 							embeds: [],
 							components: [],
 							ephemeral: true,
@@ -95,33 +90,33 @@ module.exports = {
 					});
 				});
 		} else {
-			interaction.reply({
-				content: `${await addToFav()}`,
+			await interaction.reply({
+				content: `${await addSong()}`,
 				ephemeral: true,
 			});
 		}
 
-		async function addToFav() {
-			const songs = [...playlist.dataValues.data.songs, song];
+		async function addSong() {
+			const songsToAdd = [...exist.dataValues.data.songs, song];
 
 			const affectedRows = await client.db.models.Playlists.update(
 				{
 					data: {
-						songs: songs,
+						songs: songsToAdd,
 					},
 				},
 				{
 					where: {
-						playlistOwnerId: interaction.user.id,
-						playlistId: `Favorite`,
+						playlistOwnerId: exist.dataValues.playlistOwnerId,
+						playlistId: exist.dataValues.playlistId,
 					},
 				}
 			);
 
 			return `${
 				affectedRows > 0
-					? `${client.emotes.success} | Added \`${song}\` to your **Favorite** playlist!`
-					: `${client.emotes.error} | Failed to add \`${song}\` to your **Favorite** playlist`
+					? `${client.emotes.success} | Added \`${song}\` to your **${exist.dataValues.playlistId}** playlist!`
+					: `${client.emotes.error} | Failed to add \`${song}\` to your **${exist.dataValues.playlistId}** playlist`
 			}`;
 		}
 

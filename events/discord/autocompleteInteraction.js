@@ -11,7 +11,7 @@ module.exports = {
 
 		if (!command.autocomplete) return;
 
-		if (!interaction.options.getFocused()) return await interaction.respond([]);
+		if (!interaction.options.getFocused() && command.checkFocused) return await interaction.respond([]);
 
 		if (command.inVoiceChannel && !interaction.member.voice.channel)
 			return await interaction.respond([]);

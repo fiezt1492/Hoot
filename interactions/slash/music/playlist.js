@@ -1,11 +1,7 @@
 // Deconstructed the constants we need in this file.
 // const DisTube = require("DisTube");
 // const _ = require("lodash");
-const {
-	MessageEmbed,
-	MessageActionRow,
-	MessageSelectMenu,
-} = require("discord.js");
+const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
@@ -22,6 +18,7 @@ module.exports = {
 					option
 						.setName("name")
 						.setDescription("Enter playlist name")
+						// .setMinLength(2)
 						// .setMaxLength(100)
 						.setRequired(true)
 				)
@@ -75,121 +72,16 @@ module.exports = {
 		try {
 			switch (subcommand) {
 				case "create":
-					const count = await client.db.models.Playlists.count({
-						where: { playlistOwnerId: interaction.user.id },
-					});
-
-					if (count > 10)
-						return interaction.editReply({
-							content: `${client.emotes.error} | You have reached maximum playlists (\`10\`). Delete some before create a new one!`,
-						});
-
-					const [playlistToCreate, created] =
-						await client.db.models.Playlists.findOrCreate({
-							where: {
-								playlistOwnerId: interaction.user.id,
-								playlistId: `${name}`,
-							},
-							defaults: {
-								playlistOwnerId: interaction.user.id,
-								playlistId: `${name}`,
-							},
-						});
-
-					if (!created)
-						return interaction.editReply({
-							content: `${client.emotes.error} | You already have that playlist`,
-						});
-
-					interaction.editReply({
-						content: `${client.emotes.success} | Created **${playlistToCreate.dataValues.playlistId}**!`,
-					});
+					playlistCreate(interaction, name);
 					break;
 				case "manage":
+					playlistManage(interaction, name);
 					break;
 				case "play":
-					if (!interaction.member.voice.channel) {
-						return interaction.reply({
-							content: `${client.emotes.error} | You must be in a voice channel!`,
-							ephemeral: true,
-						});
-					}
-					const existToPlay = await client.db.models.Playlists.findOne({
-						where: {
-							playlistOwnerId: interaction.user.id,
-							playlistId: `${name}`,
-						},
-					});
-
-					if (existToPlay === null)
-						return interaction.editReply({
-							content: `${client.emotes.error} | That playlist doesn't exist!`,
-						});
-
-					if (!existToPlay.dataValues.data.songs.length)
-						return interaction.editReply({
-							content: `${client.emotes.error} | This playlist is empty! Add some songs!`,
-						});
-
-					// console.log(existToPlay);
-
-					const playlistToPlay = await client.distube.createCustomPlaylist(
-						existToPlay.dataValues.data.songs,
-						{
-							member: interaction.member,
-							properties: { name: `${existToPlay.dataValues.playlistId}` },
-							parallel: true,
-						}
-					);
-
-					client.distube.play(
-						interaction.member.voice.channel,
-						playlistToPlay,
-						{
-							member: interaction.member,
-							textChannel: interaction.channel,
-						}
-					);
-
-					interaction.editReply({
-						content: `${client.emotes.success} | Playing **${playlistToPlay.name}**...`,
-					});
-
-					// console.log(playlistToPlay);
-
+					playlistPlay(interaction, name);
 					break;
 				case "delete":
-					if (name === "Favorite")
-						return interaction.editReply({
-							content: `${client.emotes.error} | That playlist is a default playlist! You cannot delete that!`,
-						});
-
-					const existToDelete = await client.db.models.Playlists.findOne({
-						where: {
-							playlistOwnerId: interaction.user.id,
-							playlistId: `${name}`,
-						},
-					});
-
-					if (existToDelete === null)
-						return interaction.editReply({
-							content: `${client.emotes.error} | That playlist doesn't exist!`,
-						});
-
-					const deleted = await client.db.models.Playlists.destroy({
-						where: {
-							playlistOwnerId: interaction.user.id,
-							playlistId: `${name}`,
-						},
-					});
-
-					interaction.editReply({
-						content: `${
-							deleted > 0
-								? `${client.emotes.success} | Deleted!`
-								: `${client.emotes.error} | Failed to delete`
-						}`,
-					});
+					playlistDelelte(interaction, name);
 					break;
 			}
 		} catch (error) {
@@ -232,4 +124,155 @@ module.exports = {
 
 async function playlistCreate(interaction, name) {
 	const { client } = interaction;
+
+	// if (name === "Favorite")
+	// 	return interaction.editReply({
+	// 		content: `${client.emotes.error} | Uh oh! You should not create this playlist due to it is default playlist!`,
+	// 	});
+
+	const count = await client.db.models.Playlists.count({
+		where: { playlistOwnerId: interaction.user.id },
+	});
+
+	if (count > 10)
+		return interaction.editReply({
+			content: `${client.emotes.error} | You have reached maximum playlists (\`10\`). Delete some before create a new one!`,
+		});
+
+	const [playlist, created] = await client.db.models.Playlists.findOrCreate({
+		where: {
+			playlistOwnerId: interaction.user.id,
+			playlistId: `${name}`,
+		},
+		defaults: {
+			playlistOwnerId: interaction.user.id,
+			playlistId: `${name}`,
+		},
+	});
+
+	if (!created)
+		return interaction.editReply({
+			content: `${client.emotes.error} | You already have that playlist`,
+		});
+
+	interaction.editReply({
+		content: `${client.emotes.success} | Created **${playlist.dataValues.playlistId}**!`,
+	});
+}
+
+async function playlistManage(interaction, name) {
+	const { client } = interaction;
+
+	const exist = await client.db.models.Playlists.findOne({
+		where: {
+			playlistOwnerId: interaction.user.id,
+			playlistId: `${name}`,
+		},
+	});
+
+	if (exist === null)
+		return interaction.editReply({
+			content: `${client.emotes.error} | That playlist doesn't exist!`,
+		});
+
+	const managePanel = require("../../../constants/embeds/playlistManage");
+
+	const components = require("../../../constants/components/playlistManage");
+
+	await interaction.editReply({
+		embeds: managePanel(
+			exist.dataValues.data.songs,
+			exist.dataValues.playlistId
+		),
+		components: [
+			components(
+				false,
+				exist.dataValues.data.songs,
+				exist.dataValues.playlistId
+			),
+		],
+		ephemeral: true,
+	});
+}
+
+async function playlistPlay(interaction, name) {
+	const { client } = interaction;
+
+	if (!interaction.member.voice.channel) {
+		return interaction.reply({
+			content: `${client.emotes.error} | You must be in a voice channel!`,
+			ephemeral: true,
+		});
+	}
+
+	const exist = await client.db.models.Playlists.findOne({
+		where: {
+			playlistOwnerId: interaction.user.id,
+			playlistId: `${name}`,
+		},
+	});
+
+	if (exist === null)
+		return interaction.editReply({
+			content: `${client.emotes.error} | That playlist doesn't exist!`,
+		});
+
+	if (!exist.dataValues.data.songs.length)
+		return interaction.editReply({
+			content: `${client.emotes.error} | This playlist is empty! Add some songs!`,
+		});
+
+	const playlist = await client.distube.createCustomPlaylist(
+		exist.dataValues.data.songs,
+		{
+			member: interaction.member,
+			properties: { name: `${exist.dataValues.playlistId}` },
+			parallel: true,
+		}
+	);
+
+	client.distube.play(interaction.member.voice.channel, playlist, {
+		member: interaction.member,
+		textChannel: interaction.channel,
+	});
+
+	interaction.editReply({
+		content: `${client.emotes.success} | Playing **${playlist.name}**...`,
+	});
+}
+
+async function playlistDelelte(interaction, name) {
+	const { client } = interaction;
+
+	// if (name === "Favorite")
+	// 	return interaction.editReply({
+	// 		content: `${client.emotes.error} | That playlist is a default playlist! You cannot delete that!`,
+	// 	});
+
+	const exist = await client.db.models.Playlists.findOne({
+		where: {
+			playlistOwnerId: interaction.user.id,
+			playlistId: `${name}`,
+		},
+	});
+
+	if (exist === null)
+		return interaction.editReply({
+			content: `${client.emotes.error} | That playlist doesn't exist!`,
+		});
+
+	const deleted = await client.db.models.Playlists.destroy({
+		where: {
+			playlistOwnerId: interaction.user.id,
+			playlistId: `${name}`,
+		},
+	});
+
+	interaction.editReply({
+		content: `${
+			deleted > 0
+				? `${client.emotes.success} | Deleted!`
+				: `${client.emotes.error} | Failed to delete`
+		}`,
+	});
 }
