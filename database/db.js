@@ -8,7 +8,7 @@ module.exports = () => {
 
 	if (dbType == "sqlite") {
 		const sqliteFilePath = config.database[dbType].file;
-		fs.closeSync(fs.openSync(sqliteFilePath, "w"))
+		// fs.closeSync(fs.openSync(sqliteFilePath, "w"))
 		return new Sequelize({
 			dialect: "sqlite",
 			storage: sqliteFilePath,
