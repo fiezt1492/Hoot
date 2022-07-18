@@ -23,8 +23,8 @@ const DjRoles = require("./models/DjRoles")(sequelize);
 const DjUsers = require("./models/DjUsers")(sequelize);
 
 (async () => {
-	await sequelize.sync({ force: config.dev === "on" ? true : false });
-	// await sequelize.sync();
+	// await sequelize.sync({ force: config.dev === "on" ? true : false });
+	await sequelize.sync();
 	// Guilds.hasMany(DjRoles);
 	// Guilds.hasMany(DjUsers);
 	console.log("[DB] Synced");
