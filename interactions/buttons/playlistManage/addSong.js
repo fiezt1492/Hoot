@@ -71,7 +71,7 @@ module.exports = {
 						content: `${client.emotes.error} | I found no valid link!`,
 					});
 
-				console.log(songsToAdd);
+				// console.log(songsToAdd);
 
 				async function addSong() {
 					const songsToAdd = [
