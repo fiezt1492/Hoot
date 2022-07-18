@@ -95,8 +95,8 @@ module.exports = {
 
 					return `${
 						affectedRows > 0
-							? `${client.emotes.success} | Added \`${song}\` to your **${exist.dataValues.playlistId}** playlist!`
-							: `${client.emotes.error} | Failed to add \`${song}\` to your **${exist.dataValues.playlistId}** playlist`
+							? `${client.emotes.success} | Added \`${resolved.length}\` songs to your **${exist.dataValues.playlistId}** playlist!`
+							: `${client.emotes.error} | Failed to add \`${resolved.length}\` to your **${exist.dataValues.playlistId}** playlist`
 					}`;
 				}
 
