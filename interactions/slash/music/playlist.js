@@ -81,7 +81,7 @@ module.exports = {
 					playlistPlay(interaction, name);
 					break;
 				case "delete":
-					playlistDelelte(interaction, name);
+					playlistDelete(interaction, name);
 					break;
 			}
 		} catch (error) {
@@ -241,7 +241,7 @@ async function playlistPlay(interaction, name) {
 	});
 }
 
-async function playlistDelelte(interaction, name) {
+async function playlistDelete(interaction, name) {
 	const { client } = interaction;
 
 	// if (name === "Favorite")
