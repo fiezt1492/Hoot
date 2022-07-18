@@ -12,7 +12,12 @@ module.exports = {
 				ephemeral: true,
 			});
 
-		if (!queue.starter || queue.starter.id !== interaction.user.id)
+		if (
+			!queue.starter ||
+			queue.starter.id !== interaction.user.id ||
+			!queue.panelId ||
+			interaction.message.id !== queue.panelId
+		)
 			return interaction.reply({
 				content: `${client.emotes.error} | You don't own this panel!`,
 				ephemeral: true,
