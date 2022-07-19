@@ -1,5 +1,5 @@
 const _ = require("lodash");
-const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js");
 
 module.exports = {
 	id: "plshow",
@@ -46,10 +46,10 @@ module.exports = {
 		const splittedSongs = _.chunk(songs, 10);
 
 		const pages = splittedSongs.map((c) =>
-			new MessageEmbed()
+			new EmbedBuilder()
 				.setTitle(`${exist.dataValues.playlistId}'s songs`)
 				.setDescription(`${c.join("\n")}`)
-				.setColor("RANDOM")
+				.setColor("Random")
 		);
 
 		if (pages.length < 2)

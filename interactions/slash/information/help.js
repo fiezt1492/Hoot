@@ -1,6 +1,6 @@
 // Deconstructed the constants we need in this file.
 
-const { MessageEmbed, MessageButton, MessageActionRow } = require("discord.js");
+const { EmbedBuilder, ButtonBuilder, ActionRowBuilder } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { OAuth2Scopes, PermissionFlagsBits } = require("discord-api-types/v10");
 
@@ -28,7 +28,7 @@ module.exports = {
 
 		const topic = interaction.options.getString("topic");
 
-		const helpEmbed = new MessageEmbed().setColor("RANDOM");
+		const helpEmbed = new EmbedBuilder().setColor("Random");
 
 		const defaultInviteLink = client.generateInvite({
 			scopes: [OAuth2Scopes.ApplicationsCommands, OAuth2Scopes.Bot],
@@ -118,16 +118,16 @@ module.exports = {
 			await interaction.reply({
 				embeds: [helpEmbed],
 				components: [
-					new MessageActionRow().addComponents(
-						new MessageButton()
+					new ActionRowBuilder().addComponents(
+						new ButtonBuilder()
 							.setStyle("LINK")
 							.setLabel("Invite Link (Recommend)")
 							.setURL(defaultInviteLink),
-						new MessageButton()
+						new ButtonBuilder()
 							.setStyle("LINK")
 							.setLabel("Invite Link (Not Recommend)")
 							.setURL(adminInviteLink),
-						new MessageButton()
+						new ButtonBuilder()
 							.setStyle("LINK")
 							.setLabel("Vote")
 							.setURL(`https://top.gg/bot/804616628359921684/vote`)

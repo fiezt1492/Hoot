@@ -1,6 +1,6 @@
 // Deconstructed the constants we need in this file.
 
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { millify } = require("millify");
 
@@ -50,8 +50,8 @@ module.exports = {
 
 		if (song.member) descriptionArray.push(`🎧 ${song.member}`);
 
-		const Embed = new MessageEmbed()
-			.setColor("RANDOM")
+		const Embed = new EmbedBuilder()
+			.setColor("Random")
 			.setTitle(`${song.name}`)
 			.setURL(song.url)
 			.setThumbnail(song.thumbnail)

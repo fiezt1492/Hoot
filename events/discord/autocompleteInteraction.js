@@ -1,9 +1,12 @@
+const { InteractionType } = require("discord-api-types/v10");
+
 module.exports = {
 	name: "interactionCreate",
 	async execute(interaction) {
 		const { client } = interaction;
 
-		if (!interaction.isAutocomplete()) return;
+		if (interaction.type !== InteractionType.ApplicationCommandAutocomplete)
+			return;
 
 		const command = client.slashCommands.get(interaction.commandName);
 
@@ -11,7 +14,8 @@ module.exports = {
 
 		if (!command.autocomplete) return;
 
-		if (!interaction.options.getFocused() && command.checkFocused) return await interaction.respond([]);
+		if (!interaction.options.getFocused() && command.checkFocused)
+			return await interaction.respond([]);
 
 		if (command.inVoiceChannel && !interaction.member.voice.channel)
 			return await interaction.respond([]);

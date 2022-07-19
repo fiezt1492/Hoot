@@ -1,28 +1,28 @@
-const { MessageActionRow, MessageButton } = require("discord.js");
+const { ActionRowBuilder, ButtonBuilder } = require("discord.js");
 
 module.exports = (state, songs, name) =>
-	new MessageActionRow().addComponents(
-		new MessageButton()
+	new ActionRowBuilder().addComponents(
+		new ButtonBuilder()
 			.setCustomId("pladdsong")
 			.setDisabled(songs.length === 100 ? true : state)
 			.setLabel("Add song(s)")
 			.setStyle("PRIMARY"),
-		new MessageButton()
+		new ButtonBuilder()
 			.setCustomId("plrename")
 			.setDisabled(name === "Favorite" ? true : state)
 			.setLabel("Rename")
 			.setStyle("SECONDARY"),
-		new MessageButton()
+		new ButtonBuilder()
 			.setCustomId("plrefresh")
 			.setDisabled(state)
 			.setLabel("Refresh")
 			.setStyle("SECONDARY"),
-		new MessageButton()
+		new ButtonBuilder()
 			.setCustomId("plshow")
 			.setDisabled(!songs.length ? true : state)
 			.setLabel("Show songs")
 			.setStyle("SECONDARY"),
-		// new MessageButton()
+		// new ButtonBuilder()
 		// 	.setCustomId("pldelsong")
 		// 	.setDisabled(state)
 		// 	.setLabel("Remove song(s)")

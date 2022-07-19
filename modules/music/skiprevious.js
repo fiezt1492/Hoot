@@ -1,7 +1,7 @@
 const {
-	MessageEmbed,
-	MessageActionRow,
-	MessageButton,
+	EmbedBuilder,
+	ActionRowBuilder,
+	ButtonBuilder,
 } = require("discord.js");
 
 module.exports = async (interaction, skip = true) => {
@@ -19,12 +19,12 @@ module.exports = async (interaction, skip = true) => {
 		.filter((m) => !m.user.bot)
 		.map((m) => m.id);
 
-	const Embed = new MessageEmbed();
+	const Embed = new EmbedBuilder();
 
 	if (membersInVoice.length > 1) {
 		const components = (state) => [
-			new MessageActionRow().addComponents(
-				new MessageButton()
+			new ActionRowBuilder().addComponents(
+				new ButtonBuilder()
 					.setCustomId("voteYes")
 					.setStyle("SUCCESS")
 					.setDisabled(state)
@@ -106,7 +106,7 @@ module.exports = async (interaction, skip = true) => {
 				} catch (error) {
 					interaction.editReply({
 						embeds: [
-							new MessageEmbed()
+							new EmbedBuilder()
 								.setColor("RED")
 								.setTitle(`${client.emotes.error} ERROR`)
 								.setDescription(`${error.message}`),
@@ -130,7 +130,7 @@ module.exports = async (interaction, skip = true) => {
 		} catch (error) {
 			interaction.reply({
 				embeds: [
-					new MessageEmbed()
+					new EmbedBuilder()
 						.setColor("RED")
 						.setTitle(`${client.emotes.error} ERROR`)
 						.setDescription(`${error.message}`),

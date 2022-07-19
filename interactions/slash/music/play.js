@@ -1,6 +1,7 @@
 // Deconstructed the constants we need in this file.
 // const DisTube = require("DisTube");
-const { MessageEmbed, Constants } = require("discord.js");
+const { EmbedBuilder, Constants } = require("discord.js");
+const { ChannelType } = require("discord-api-types/v10");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
@@ -31,10 +32,7 @@ module.exports = {
 			option
 				.setName("destination")
 				.setDescription("Select a voice channel")
-				.addChannelTypes(
-					Constants.ChannelTypes.GUILD_STAGE_VOICE,
-					Constants.ChannelTypes.GUILD_VOICE
-				)
+				.addChannelTypes(ChannelType.GuildStageVoice, ChannelType.GuildVoice)
 		),
 	inVoiceChannel: true,
 	checkFocused: true,

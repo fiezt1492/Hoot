@@ -1,4 +1,4 @@
-const { MessageActionRow, MessageButton, MessageEmbed } = require("discord.js");
+const { ActionRowBuilder, ButtonBuilder, EmbedBuilder } = require("discord.js");
 
 module.exports = async (
 	interaction,
@@ -12,18 +12,18 @@ module.exports = async (
 ) => {
 	try {
 		const row = (state) => {
-			const pageButtons = new MessageActionRow().addComponents(
-				new MessageButton()
+			const pageButtons = new ActionRowBuilder().addComponents(
+				new ButtonBuilder()
 					.setStyle("SECONDARY")
 					.setEmoji("⬅")
 					.setDisabled(state)
 					.setCustomId("back-page"),
-				new MessageButton()
+				new ButtonBuilder()
 					.setStyle("DANGER")
 					.setEmoji("✖")
 					.setDisabled(state)
 					.setCustomId("stop-page"),
-				new MessageButton()
+				new ButtonBuilder()
 					.setStyle("SECONDARY")
 					.setEmoji("➡")
 					.setDisabled(state)

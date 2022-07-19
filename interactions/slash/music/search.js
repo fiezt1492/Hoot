@@ -2,9 +2,9 @@
 // const DisTube = require("DisTube");
 const _ = require("lodash");
 const {
-	MessageEmbed,
-	MessageActionRow,
-	MessageSelectMenu,
+	EmbedBuilder,
+	ActionRowBuilder,
+	SelectMenuBuilder,
 } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 

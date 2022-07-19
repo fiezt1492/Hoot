@@ -1,8 +1,8 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 module.exports = (song, queue, client) => [
-	new MessageEmbed()
-		.setColor(queue.paused ? "RED" : "RANDOM")
+	new EmbedBuilder()
+		.setColor(queue.paused ? "Red" : "Random")
 		.setAuthor({
 			name: `${song.user.tag}`,
 			iconURL: `${song.user.displayAvatarURL()}`,

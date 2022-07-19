@@ -1,6 +1,6 @@
 // Deconstructed the constants we need in this file.
 
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
@@ -27,8 +27,8 @@ module.exports = {
 
 		interaction.reply({
 			embeds: [
-				new MessageEmbed()
-					.setColor("RANDOM")
+				new EmbedBuilder()
+					.setColor("Random")
 					.setTitle(`Autoplay: ${autoplay ? "On" : "Off"}`),
 			],
 		});

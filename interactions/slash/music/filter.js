@@ -1,6 +1,6 @@
 // Deconstructed the constants we need in this file.
 
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const defaultFilters = Object.keys(require("distube").defaultFilters).map(
 	(mf) => {
@@ -53,8 +53,8 @@ module.exports = {
 		else if (Object.keys(client.distube.filters).includes(filter))
 			queue.setFilter(filter);
 
-		const Embed = new MessageEmbed()
-			.setColor("BLURPLE")
+		const Embed = new EmbedBuilder()
+			.setColor("Blurple")
 			.setTitle(`Current Queue Filter`)
 			.setDescription(`\`${queue.filters.join(", ") || "off"}\``);
 

@@ -1,3 +1,5 @@
+const { InteractionType } = require("discord-api-types/v10");
+
 module.exports = {
 	name: "interactionCreate",
 	async execute(interaction) {
@@ -6,7 +8,7 @@ module.exports = {
 
 		// Checks if the interaction is a button interaction (to prevent weird bugs)
 
-		if (!interaction.isButton()) return;
+		if (interaction.type !== InteractionType.MessageComponent) return;
 
 		const command = client.buttonCommands.get(interaction.customId);
 

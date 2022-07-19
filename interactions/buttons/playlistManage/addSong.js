@@ -1,8 +1,8 @@
 const {
-	MessageEmbed,
-	MessageActionRow,
+	EmbedBuilder,
+	ActionRowBuilder,
 	Modal,
-	TextInputComponent,
+	TextInputBuilder,
 } = require("discord.js");
 const { URL } = require("url");
 
@@ -27,7 +27,7 @@ module.exports = {
 				ephemeral: true,
 			});
 
-		const songsInput = new TextInputComponent()
+		const songsInput = new TextInputBuilder()
 			.setCustomId("links")
 			.setRequired(true)
 			.setPlaceholder(
@@ -39,7 +39,7 @@ module.exports = {
 		const modal = new Modal()
 			.setCustomId("pladdsong")
 			.setTitle(`Add song to Playlist`)
-			.addComponents(new MessageActionRow().addComponents(songsInput));
+			.addComponents(new ActionRowBuilder().addComponents(songsInput));
 
 		interaction.showModal(modal);
 

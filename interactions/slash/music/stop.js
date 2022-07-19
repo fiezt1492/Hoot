@@ -1,6 +1,6 @@
 // Deconstructed the constants we need in this file.
 
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
@@ -26,7 +26,7 @@ module.exports = {
 
 		interaction.reply({
 			embeds: [
-				new MessageEmbed().setColor("RED").setTitle("Stopped the queue!"),
+				new EmbedBuilder().setColor("RED").setTitle("Stopped the queue!"),
 			],
 		});
 	},

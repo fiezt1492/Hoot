@@ -38,7 +38,7 @@ module.exports = {
 				},
 			];
 
-			const status = statuses[Math.floor(Math.random() * statuses.length)];
+			const status = statuses[Math.floor(Math.Random() * statuses.length)];
 
 			client.user.setActivity(status.name, { type: status.type });
 		}, 7200000);

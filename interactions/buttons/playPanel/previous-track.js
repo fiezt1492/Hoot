@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
 	id: "pre-track",
@@ -20,7 +20,7 @@ module.exports = {
 		// 		ephemeral: true,
 		// 	});
 
-		// const Embed = new MessageEmbed();
+		// const Embed = new EmbedBuilder();
 
 		// try {
 		// 	const song = await queue.previous();

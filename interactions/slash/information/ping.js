@@ -1,7 +1,7 @@
 // Deconstructed the constants we need in this file.
 
 const Discord = require("discord.js");
-// const { MessageEmbed, MessageButton, MessageActionRow } = require("discord.js");
+// const { EmbedBuilder, ButtonBuilder, ActionRowBuilder } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
@@ -26,9 +26,9 @@ module.exports = {
 			seconds > 0 ? `${seconds} second${seconds > 1 ? "s" : ""}` : ""
 		}`;
 
-		const Embed = new Discord.MessageEmbed()
+		const Embed = new Discord.EmbedBuilder()
 			// .setTitle("🏓 Pong!")
-			.setColor("RANDOM")
+			.setColor("Random")
 			.addField("Online", "```" + uptime + "```")
 			.addField(
 				"API Latency",

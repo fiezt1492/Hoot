@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
 	name: "addSong",
@@ -7,7 +7,7 @@ module.exports = {
 			queue.songs.splice(client.maxSongs + 1).length;
 			return queue.textChannel.send({
 				embeds: [
-					new MessageEmbed()
+					new EmbedBuilder()
 						.setColor("RED")
 						.setTitle("FAILED TO ADD SONG")
 						.setDescription(
@@ -17,8 +17,8 @@ module.exports = {
 			});
 		}
 
-		const Embed = new MessageEmbed()
-			.setColor("RANDOM")
+		const Embed = new EmbedBuilder()
+			.setColor("Random")
 			.setDescription(
 				`Added **[${song.name}](${song.url})** - \`${
 					song.formattedDuration

@@ -1,7 +1,7 @@
 // Deconstructed the constants we need in this file.
 
 const Discord = require("discord.js");
-// const { MessageEmbed, MessageButton, MessageActionRow } = require("discord.js");
+// const { EmbedBuilder, ButtonBuilder, ActionRowBuilder } = require("discord.js");
 const os = require("os");
 const packageJSON = require("../../../package.json");
 const {
@@ -48,11 +48,11 @@ module.exports = {
 				: await client.shard.fetchClientValues("guilds.cache.size");
 
 		// console.log(client.shard)
-		const Embed = new Discord.MessageEmbed()
+		const Embed = new Discord.EmbedBuilder()
 			.setTitle(
 				client.user.username + "'s STAT (ver: " + packageJSON.version + ")"
 			)
-			.setColor("RANDOM")
+			.setColor("Random")
 			.setThumbnail(client.user.displayAvatarURL())
 			.addField(
 				"SYSTEM",

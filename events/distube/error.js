@@ -1,9 +1,9 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
 	name: "error",
 	execute(channel, e, client, status) {
-		const Embed = new MessageEmbed()
+		const Embed = new EmbedBuilder()
 			.setColor("RED")
 			.setTitle(`ERROR`)
 			.setDescription(

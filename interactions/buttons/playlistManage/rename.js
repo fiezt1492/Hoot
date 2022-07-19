@@ -1,8 +1,8 @@
 const {
-	MessageEmbed,
-	MessageActionRow,
+	EmbedBuilder,
+	ActionRowBuilder,
 	Modal,
-	TextInputComponent,
+	TextInputBuilder,
 } = require("discord.js");
 
 module.exports = {
@@ -31,7 +31,7 @@ module.exports = {
 				ephemeral: true,
 			});
 
-		const newNameInput = new TextInputComponent()
+		const newNameInput = new TextInputBuilder()
 			.setCustomId("name")
 			.setMinLength(2)
 			.setMaxLength(100)
@@ -43,7 +43,7 @@ module.exports = {
 		const modal = new Modal()
 			.setCustomId("plrename")
 			.setTitle(`Rename Playlist`)
-			.addComponents(new MessageActionRow().addComponents(newNameInput));
+			.addComponents(new ActionRowBuilder().addComponents(newNameInput));
 
 		interaction.showModal(modal);
 

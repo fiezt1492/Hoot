@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
 	name: "addList",
@@ -9,7 +9,7 @@ module.exports = {
 			const exceptLength = queue.songs.splice(client.maxSongs + 1).length;
 			queue.textChannel.send({
 				embeds: [
-					new MessageEmbed()
+					new EmbedBuilder()
 						.setColor("RED")
 						.setDescription(
 							`Your queue length meets limitation (\`${client.maxSongs}\`), some of your songs (\`${exceptLength}\` songs) were removed.`
@@ -19,8 +19,8 @@ module.exports = {
 			playlistLength -= exceptLength;
 		}
 
-		const Embed = new MessageEmbed()
-			.setColor("RANDOM")
+		const Embed = new EmbedBuilder()
+			.setColor("Random")
 			.setDescription(
 				`Added [\`${playlist.name}\`](${
 					playlist.url

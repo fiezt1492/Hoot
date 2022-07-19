@@ -1,4 +1,4 @@
-const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js");
 
 module.exports = {
 	id: "addtopl",
@@ -25,13 +25,13 @@ module.exports = {
 		let duplicated = exist.dataValues.data.songs.includes(song);
 
 		const components = (state) => [
-			new MessageActionRow().addComponents(
-				new MessageButton()
+			new ActionRowBuilder().addComponents(
+				new ButtonBuilder()
 					.setCustomId("voteYes")
 					.setStyle("SUCCESS")
 					.setDisabled(state)
 					.setLabel("Yes"),
-				new MessageButton()
+				new ButtonBuilder()
 					.setCustomId("voteNo")
 					.setStyle("DANGER")
 					.setDisabled(state)
@@ -39,7 +39,7 @@ module.exports = {
 			),
 		];
 
-		const Embed = new MessageEmbed()
+		const Embed = new EmbedBuilder()
 			.setColor("ORANGE")
 			.setTitle(`${client.emotes.warning} CAUTION`)
 			.setDescription(
