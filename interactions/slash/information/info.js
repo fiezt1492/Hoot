@@ -54,28 +54,35 @@ module.exports = {
 			)
 			.setColor("Random")
 			.setThumbnail(client.user.displayAvatarURL())
-			.addField(
-				"SYSTEM",
-				"```" + `OS: ${operatingSystemPlatform}\nCPU: ${cpuModel}` + "```",
-				true
-			)
-			.addField(
-				"MEMORY",
-				"```" + `SYSTEM: ${sysMemoryUsage}\nPROCESS: ${processField}` + "```",
-				true
-			)
-			.addField(
-				"Version",
-				`\`\`\`Node.js: ${process.version}\nDiscord.js: ${Discord.version}\nDisTube.js: ${client.distube.version}\`\`\``,
-				true
-			)
-			.addField(
-				"SIZES",
-				"```" +
-					`Shards: ${client.shard.count}\nServers: ${guildSize}\nPlaying/Connected: ${client.distube.queues.collection.size}/${client.distube.voices.collection.size}` +
-					"```",
-				true
-			)
+			.addFields([
+				{
+					name: `SYSTEM`,
+					value:
+						"```" + `OS: ${operatingSystemPlatform}\nCPU: ${cpuModel}` + "```",
+					inline: true,
+				},
+				{
+					name: `MEMORY`,
+					value:
+						"```" +
+						`SYSTEM: ${sysMemoryUsage}\nPROCESS: ${processField}` +
+						"```",
+					inline: true,
+				},
+				{
+					name: `VERSION`,
+					value: `\`\`\`Node.js: ${process.version}\nDiscord.js: ${Discord.version}\nDisTube.js: ${client.distube.version}\`\`\``,
+					inline: true,
+				},
+				{
+					name: `SIZES`,
+					value:
+						"```" +
+						`Shards: ${client.shard?.count}\nServers: ${guildSize}\nPlaying/Connected: ${client.distube.queues.collection.size}/${client.distube.voices.collection.size}` +
+						"```",
+					inline: true,
+				},
+			])
 			.setFooter({ text: `https://owlvernyte.tk` });
 
 		await interaction.reply({

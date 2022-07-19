@@ -97,7 +97,12 @@ module.exports = async (interaction, skip = true) => {
 							Embed.setColor("GREEN")
 								.setTitle("")
 								.setDescription(`${client.emotes.success} | Skipped!`)
-								.addField(`Now Playing`, `[\`${song.name}\`](${song.url})`)
+								.addFields([
+									{
+										name: `Now Playing`,
+										value: `[\`${song.name}\`](${song.url})`,
+									},
+								])
 								.setFooter({
 									text: ``,
 								}),
@@ -123,7 +128,12 @@ module.exports = async (interaction, skip = true) => {
 
 			Embed.setColor("GREEN")
 				.setDescription(`${client.emotes.success} | Skipped!`)
-				.addField(`Now Playing`, `[\`${song.name}\`](${song.url})`);
+				.addFields([
+					{
+						name: `Now Playing`,
+						value: `[\`${song.name}\`](${song.url})`,
+					},
+				]);
 
 			interaction.reply({
 				embeds: [Embed],

@@ -27,22 +27,28 @@ module.exports = {
 		}`;
 
 		const Embed = new Discord.EmbedBuilder()
-			// .setTitle("🏓 Pong!")
 			.setColor("Random")
-			.addField("Online", "```" + uptime + "```")
-			.addField(
-				"API Latency",
-				"```" + Math.round(client.ws.ping) + "ms" + "```",
-				true
-			)
-			.addField(
-				"Client Latency",
-				"```" +
-					Math.round(Date.now() - interaction.createdTimestamp) +
-					"ms" +
-					"```",
-				true
-			)
+			.addFields([
+				{
+					name: `Online`,
+					value: "```" + uptime + "```",
+					inline: false,
+				},
+				{
+					name: `API Latency`,
+					value: "```" + Math.round(client.ws.ping) + "ms" + "```",
+					inline: true,
+				},
+				{
+					name: `Client Latency`,
+					value:
+						"```" +
+						Math.round(Date.now() - interaction.createdTimestamp) +
+						"ms" +
+						"```",
+					inline: true,
+				},
+			])
 			.setFooter({
 				text: `${interaction.guild.name}'s Shard: #${interaction.guild.shardId}`,
 			});

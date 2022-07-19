@@ -40,10 +40,12 @@ module.exports = {
 			new EmbedBuilder()
 				.setTitle(`${totalSongs} songs in queue`)
 				.setDescription(`${c.join("\n")}`)
-				.addField(
-					`Now Playing`,
-					`**[${np.name}](${np.url}) - \`${np.formattedDuration}\`**`
-				)
+				.addFields([
+					{
+						name: `Now Playing`,
+						value: `**[${np.name}](${np.url}) - \`${np.formattedDuration}\`**`,
+					},
+				])
 				.setColor("Random")
 		);
 

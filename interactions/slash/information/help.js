@@ -100,12 +100,12 @@ module.exports = {
 				};
 			});
 
-			commandsList.forEach((list) => {
-				helpEmbed.addField(
-					`${list.category.toUpperCase()}`,
-					list.commands.map((cmd) => `\`${formatCommand(cmd)}\``).join(", ")
-				);
-			});
+			helpEmbed.addFields(
+				commandsList.map((list) => ({
+					name: `${list.category.toUpperCase()}`,
+					value: `${list.commands.map((cmd) => `\`${formatCommand(cmd)}\``).join(", ")}`
+				}))
+			)
 
 			await interaction.reply({
 				embeds: [helpEmbed],
