@@ -23,7 +23,7 @@ module.exports = {
 
 		// Checks if the interaction target was a user
 
-		if (interaction.targetType === "USER") {
+		if (interaction.commandType === ApplicationCommandType.User) {
 			const command = client.contextCommands.get(
 				"USER " + interaction.commandName
 			);
@@ -43,7 +43,7 @@ module.exports = {
 			}
 		}
 		// Checks if the interaction target was a user
-		else if (interaction.targetType === "MESSAGE") {
+		else if (interaction.commandType === ApplicationCommandType.Message) {
 			const command = client.contextCommands.get(
 				"MESSAGE " + interaction.commandName
 			);
