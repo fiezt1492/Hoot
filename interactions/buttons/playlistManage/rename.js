@@ -3,6 +3,7 @@ const {
 	ActionRowBuilder,
 	Modal,
 	TextInputBuilder,
+	TextInputStyle,
 } = require("discord.js");
 
 module.exports = {
@@ -38,7 +39,7 @@ module.exports = {
 			.setRequired(true)
 			.setPlaceholder("New playlist name...")
 			.setLabel("What's the new playlist name?")
-			.setStyle("SHORT");
+			.setStyle(TextInputStyle.Short);
 
 		const modal = new Modal()
 			.setCustomId("plrename")

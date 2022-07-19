@@ -1,6 +1,6 @@
 // Deconstructed the constants we need in this file.
 
-const { EmbedBuilder, ButtonBuilder, ActionRowBuilder } = require("discord.js");
+const { EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { OAuth2Scopes, PermissionFlagsBits } = require("discord-api-types/v10");
 
@@ -120,15 +120,15 @@ module.exports = {
 				components: [
 					new ActionRowBuilder().addComponents(
 						new ButtonBuilder()
-							.setStyle("LINK")
+							.setStyle(ButtonStyle.Link) 
 							.setLabel("Invite Link (Recommend)")
 							.setURL(defaultInviteLink),
 						new ButtonBuilder()
-							.setStyle("LINK")
+							.setStyle(ButtonStyle.Link)
 							.setLabel("Invite Link (Not Recommend)")
 							.setURL(adminInviteLink),
 						new ButtonBuilder()
-							.setStyle("LINK")
+							.setStyle(ButtonStyle.Link)
 							.setLabel("Vote")
 							.setURL(`https://top.gg/bot/804616628359921684/vote`)
 					),

@@ -5,7 +5,7 @@ const {
 	Client,
 	Collection,
 	GatewayIntentBits,
-	Partials,
+	// Partials,
 } = require("discord.js");
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v10");
@@ -26,21 +26,21 @@ const intents = [
 	GatewayIntentBits.GuildPresences,
 ];
 
-const partials = [
-	Partials.Channel,
-	Partials.GuildMember,
-	Partials.ThreadMember,
-	Partials.Message,
-	Partials.Reaction,
-	Partials.User,
-];
+// const partials = [
+// 	Partials.Channel,
+// 	Partials.GuildMember,
+// 	Partials.ThreadMember,
+// 	Partials.Message,
+// 	Partials.Reaction,
+// 	Partials.User,
+// ];
 
 // @ts-ignore
 const client = new Client({
 	// Please add all intents you need, more detailed information @ https://ziad87.net/intents/
 	intents: [intents],
 	restTimeOffset: 0,
-	partials: partials,
+	// partials: partials,
 	// shard: "auto",
 	ws: { intents: intents },
 });

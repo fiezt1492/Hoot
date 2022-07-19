@@ -1,4 +1,4 @@
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js");
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 
 module.exports = {
 	id: "addtopl",
@@ -28,12 +28,12 @@ module.exports = {
 			new ActionRowBuilder().addComponents(
 				new ButtonBuilder()
 					.setCustomId("voteYes")
-					.setStyle("SUCCESS")
+					.setStyle(ButtonStyle.Success)
 					.setDisabled(state)
 					.setLabel("Yes"),
 				new ButtonBuilder()
 					.setCustomId("voteNo")
-					.setStyle("DANGER")
+					.setStyle(ButtonStyle.Danger)
 					.setDisabled(state)
 					.setLabel("No")
 			),

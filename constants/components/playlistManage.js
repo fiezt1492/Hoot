@@ -1,4 +1,4 @@
-const { ActionRowBuilder, ButtonBuilder } = require("discord.js");
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 
 module.exports = (state, songs, name) =>
 	new ActionRowBuilder().addComponents(
@@ -6,25 +6,25 @@ module.exports = (state, songs, name) =>
 			.setCustomId("pladdsong")
 			.setDisabled(songs.length === 100 ? true : state)
 			.setLabel("Add song(s)")
-			.setStyle("PRIMARY"),
+			.setStyle(ButtonStyle.Primary),
 		new ButtonBuilder()
 			.setCustomId("plrename")
 			.setDisabled(name === "Favorite" ? true : state)
 			.setLabel("Rename")
-			.setStyle("SECONDARY"),
+			.setStyle(ButtonStyle.Secondary),
 		new ButtonBuilder()
 			.setCustomId("plrefresh")
 			.setDisabled(state)
 			.setLabel("Refresh")
-			.setStyle("SECONDARY"),
+			.setStyle(ButtonStyle.Secondary),
 		new ButtonBuilder()
 			.setCustomId("plshow")
 			.setDisabled(!songs.length ? true : state)
 			.setLabel("Show songs")
-			.setStyle("SECONDARY"),
+			.setStyle(ButtonStyle.Secondary),
 		// new ButtonBuilder()
 		// 	.setCustomId("pldelsong")
 		// 	.setDisabled(state)
 		// 	.setLabel("Remove song(s)")
-		// 	.setStyle("DANGER")
+		// 	.setStyle(ButtonStyle.Danger)
 	);

@@ -3,6 +3,7 @@ const {
 	ActionRowBuilder,
 	Modal,
 	TextInputBuilder,
+	TextInputStyle
 } = require("discord.js");
 const { URL } = require("url");
 
@@ -34,7 +35,7 @@ module.exports = {
 				"Enter song links...\nSupport YouTube and SoundCloud links only"
 			)
 			.setLabel("Song links (one link per line)")
-			.setStyle("PARAGRAPH");
+			.setStyle(TextInputStyle.Paragraph);
 
 		const modal = new Modal()
 			.setCustomId("pladdsong")

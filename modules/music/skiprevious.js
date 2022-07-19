@@ -2,6 +2,7 @@ const {
 	EmbedBuilder,
 	ActionRowBuilder,
 	ButtonBuilder,
+	ButtonStyle,
 } = require("discord.js");
 
 module.exports = async (interaction, skip = true) => {
@@ -26,7 +27,7 @@ module.exports = async (interaction, skip = true) => {
 			new ActionRowBuilder().addComponents(
 				new ButtonBuilder()
 					.setCustomId("voteYes")
-					.setStyle("SUCCESS")
+					.setStyle(ButtonStyle.Success)
 					.setDisabled(state)
 					.setLabel("SKIP")
 					.setEmoji(`${client.emotes.next}`)
