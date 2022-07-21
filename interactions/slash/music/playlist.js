@@ -234,10 +234,9 @@ async function playlistPlay(interaction, name) {
 	client.distube.play(interaction.member.voice.channel, playlist, {
 		member: interaction.member,
 		textChannel: interaction.channel,
-	});
-
-	interaction.editReply({
-		content: `${client.emotes.success} | Playing **${playlist.name}**...`,
+		metadata: {
+			i: interaction,
+		},
 	});
 }
 
