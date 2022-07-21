@@ -91,7 +91,6 @@ client.selectCommands = new Collection();
 client.contextCommands = new Collection();
 client.modalCommands = new Collection();
 client.cooldowns = new Collection();
-client.skiprevious = new Collection();
 // client.triggers = new Collection();
 client.emotes = client.config.emoji;
 client.maxSongs = 100;
