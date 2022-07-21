@@ -40,7 +40,7 @@ module.exports = {
 		queue.pause();
 
 		interaction.reply({
-			embeds: [new EmbedBuilder().setColor("RED").setTitle("Paused the song!")],
+			embeds: [new EmbedBuilder().setColor("Red").setTitle("Paused the song!")],
 		});
 	},
 };

@@ -91,7 +91,7 @@ client.selectCommands = new Collection();
 client.contextCommands = new Collection();
 client.modalCommands = new Collection();
 client.cooldowns = new Collection();
-client.skip = new Collection();
+client.skiprevious = new Collection();
 // client.triggers = new Collection();
 client.emotes = client.config.emoji;
 client.maxSongs = 100;
@@ -303,7 +303,7 @@ const commandJsonData = [
 
 const status = (queue) =>
 	`Volume: ${queue.volume}% | Filter: ${
-		queue.filters.join(", ") || "Off"
+		queue.filters.names.join(", ") || "Off"
 	} | Loop: ${
 		queue.repeatMode
 			? queue.repeatMode === 2
@@ -324,7 +324,7 @@ for (const file of distubeEventFiles) {
 	if (event.skip) continue;
 	if (event.once) {
 		client.distube.once(event.name, (...args) =>
-			event.execute(...args, client, status)
+			event.execute(...args, client)
 		);
 	} else {
 		client.distube.on(

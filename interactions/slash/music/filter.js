@@ -43,20 +43,16 @@ module.exports = {
 
 		const filter = interaction.options.getString("filter");
 
-		// if (filter === "off" && queue.filters.size) queue.filters.clear();
-		// else if (Object.keys(client.distube.filters).includes(filter)) {
-		// 	if (queue.filters.has(filter)) queue.filters.remove(filter);
-		// 	else queue.filters.add(filter);
-		// }
-
-		if (filter === "off" && queue.filters?.length) queue.setFilter(false);
-		else if (Object.keys(client.distube.filters).includes(filter))
-			queue.setFilter(filter);
+		if (filter === "off" && queue.filters.size) queue.filters.clear();
+		else if (Object.keys(client.distube.filters).includes(filter)) {
+			if (queue.filters.has(filter)) queue.filters.remove(filter);
+			else queue.filters.add(filter);
+		}
 
 		const Embed = new EmbedBuilder()
 			.setColor("Blurple")
 			.setTitle(`Current Queue Filter`)
-			.setDescription(`\`${queue.filters.join(", ") || "off"}\``);
+			.setDescription(`\`${queue.filters.names.join(", ") || "None"}\``);
 
 		interaction.reply({
 			embeds: [Embed],

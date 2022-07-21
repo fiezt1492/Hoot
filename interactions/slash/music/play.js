@@ -39,6 +39,7 @@ module.exports = {
 	category: "music",
 	async execute(interaction) {
 		const { client, guild } = interaction;
+		await interaction.deferReply()
 		const songName = interaction.options.getString("song");
 		const skip = interaction.options.getBoolean("skip") || false;
 		let position = interaction.options.getInteger("position") || 0;
@@ -51,11 +52,9 @@ module.exports = {
 			textChannel: interaction.channel,
 			skip: skip,
 			position: position,
-		});
-
-		await interaction.reply({
-			content: `Finding \`${songName}\`...`,
-			ephemeral: true,
+			metadata: {
+				i: interaction,
+			},
 		});
 	},
 	async autocomplete(interaction) {

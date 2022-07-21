@@ -26,7 +26,7 @@ module.exports = {
 
 		interaction.reply({
 			embeds: [
-				new EmbedBuilder().setColor("RED").setTitle("Stopped the queue!"),
+				new EmbedBuilder().setColor("Red").setTitle("Stopped the queue!"),
 			],
 		});
 	},

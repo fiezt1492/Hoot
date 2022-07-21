@@ -35,7 +35,7 @@ module.exports = {
 			return interaction.reply({
 				embeds: [
 					new EmbedBuilder()
-						.setColor("RED")
+						.setColor("Red")
 						.setDescription(
 							`The time you entered (second \`${time}\`) is bigger than the song duration (\`${queue.songs[0].duration}\`)`
 						),

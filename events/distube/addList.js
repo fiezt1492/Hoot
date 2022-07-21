@@ -2,7 +2,8 @@ const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
 	name: "addList",
-	execute(queue, playlist, client, status) {
+	async execute(queue, playlist, client) {
+		// console.log(playlist.metadata);
 		let playlistLength = playlist.songs.length;
 
 		if (queue.songs.length - 1 > client.maxSongs) {
@@ -10,7 +11,7 @@ module.exports = {
 			queue.textChannel.send({
 				embeds: [
 					new EmbedBuilder()
-						.setColor("RED")
+						.setColor("Red")
 						.setDescription(
 							`Your queue length meets limitation (\`${client.maxSongs}\`), some of your songs (\`${exceptLength}\` songs) were removed.`
 						),
@@ -27,13 +28,13 @@ module.exports = {
 				}) playlist (\`${playlistLength}\` songs) to queue for total \`${
 					queue.songs.length - 1
 				}\` songs in queue`
-			)
-			.setAuthor({
-				name: `${playlist.user.tag}`,
-				iconURL: `${playlist.user.displayAvatarURL()}`,
-			});
+			);
+		// .setAuthor({
+		// 	name: `${playlist.user.tag}`,
+		// 	iconURL: `${playlist.user.displayAvatarURL()}`,
+		// });
 
-		queue.textChannel.send({
+		await playlist.metadata.i.editReply({
 			embeds: [Embed],
 		});
 	},

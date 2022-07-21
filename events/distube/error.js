@@ -2,9 +2,9 @@ const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
 	name: "error",
-	execute(channel, e, client, status) {
+	execute(channel, e, client) {
 		const Embed = new EmbedBuilder()
-			.setColor("RED")
+			.setColor("Red")
 			.setTitle(`ERROR`)
 			.setDescription(
 				`An error encountered: \`\`\`${e.toString().slice(0, 1974)}\`\`\``

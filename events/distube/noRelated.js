@@ -2,9 +2,9 @@ const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
 	name: "noRelated",
-	execute(queue, client, status) {
+	execute(queue, client) {
 		const Embed = new EmbedBuilder()
-			.setColor("RED")
+			.setColor("Red")
 			.setDescription("Can't find related video to play.");
 
 		queue.textChannel.send({

@@ -87,7 +87,7 @@ module.exports = {
 		} catch (error) {
 			interaction.editReply({
 				embeds: [
-					Embed.setColor("RED")
+					Embed.setColor("Red")
 						.setTitle("ERROR")
 						.setDescription(`\`\`\`${error.message}\`\`\``),
 				],

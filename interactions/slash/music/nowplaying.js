@@ -27,6 +27,13 @@ module.exports = {
 
 		const descriptionArray = [];
 
+		if (song.isLive) descriptionArray.push(`🔴 \`Live\``);
+		else {
+			descriptionArray.push(
+				`⌛ \`${queue.formattedCurrentTime}\``
+			);
+		}
+
 		if (song.views) descriptionArray.push(`👁 \`${millify(song.views)}\``);
 
 		if (song.likes || song.dislikes)
@@ -59,8 +66,10 @@ module.exports = {
 				text: `${song.formattedDuration} | ${client.status(queue)}`,
 			});
 
-		if (descriptionArray.length)
-			Embed.setDescription(descriptionArray.join(" | "));
+		if (descriptionArray.length) {
+			const stat = descriptionArray.join(" | ");
+			Embed.setDescription(`${stat}`);
+		}
 
 		interaction.reply({
 			embeds: [Embed],

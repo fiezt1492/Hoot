@@ -7,7 +7,7 @@ module.exports = (songs, name) => [
 		.setDescription(`${songs.length ? `${songs.length}/100 songs` : "Empty"}`),
 ];
 /**
- * const color = name === "Favorite" ? "RED" : "Random";
+ * const color = name === "Favorite" ? "Red" : "Random";
 
 	if (!songs.length)
 		return [

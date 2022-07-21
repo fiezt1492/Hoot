@@ -40,7 +40,7 @@ module.exports = {
 		];
 
 		const Embed = new EmbedBuilder()
-			.setColor("ORANGE")
+			.setColor("Orange")
 			.setTitle(`${client.emotes.warning} CAUTION`)
 			.setDescription(
 				`That song is already been in your **Favorite** playlist! Are you sure that you want to add more?`

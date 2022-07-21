@@ -35,7 +35,7 @@ module.exports = {
 			return interaction.reply({
 				embeds: [
 					new EmbedBuilder()
-						.setColor("RED")
+						.setColor("Red")
 						.setDescription(
 							`The position you entered (\`${position}\`) is bigger than the queue length (\`${
 								queue.songs.length - 1
