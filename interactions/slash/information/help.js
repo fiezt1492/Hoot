@@ -1,6 +1,6 @@
 // Deconstructed the constants we need in this file.
 
-const { MessageEmbed, MessageButton, MessageActionRow } = require("discord.js");
+const { EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { OAuth2Scopes, PermissionFlagsBits } = require("discord-api-types/v10");
 
@@ -28,7 +28,7 @@ module.exports = {
 
 		const topic = interaction.options.getString("topic");
 
-		const helpEmbed = new MessageEmbed().setColor("RANDOM");
+		const helpEmbed = new EmbedBuilder().setColor("Random");
 
 		const defaultInviteLink = client.generateInvite({
 			scopes: [OAuth2Scopes.ApplicationsCommands, OAuth2Scopes.Bot],
@@ -100,12 +100,12 @@ module.exports = {
 				};
 			});
 
-			commandsList.forEach((list) => {
-				helpEmbed.addField(
-					`${list.category.toUpperCase()}`,
-					list.commands.map((cmd) => `\`${formatCommand(cmd)}\``).join(", ")
-				);
-			});
+			helpEmbed.addFields(
+				commandsList.map((list) => ({
+					name: `${list.category.toUpperCase()}`,
+					value: `${list.commands.map((cmd) => `\`${formatCommand(cmd)}\``).join(", ")}`
+				}))
+			)
 
 			await interaction.reply({
 				embeds: [helpEmbed],
@@ -118,17 +118,17 @@ module.exports = {
 			await interaction.reply({
 				embeds: [helpEmbed],
 				components: [
-					new MessageActionRow().addComponents(
-						new MessageButton()
-							.setStyle("LINK")
+					new ActionRowBuilder().addComponents(
+						new ButtonBuilder()
+							.setStyle(ButtonStyle.Link) 
 							.setLabel("Invite Link (Recommend)")
 							.setURL(defaultInviteLink),
-						new MessageButton()
-							.setStyle("LINK")
+						new ButtonBuilder()
+							.setStyle(ButtonStyle.Link)
 							.setLabel("Invite Link (Not Recommend)")
 							.setURL(adminInviteLink),
-						new MessageButton()
-							.setStyle("LINK")
+						new ButtonBuilder()
+							.setStyle(ButtonStyle.Link)
 							.setLabel("Vote")
 							.setURL(`https://top.gg/bot/804616628359921684/vote`)
 					),

@@ -1,8 +1,8 @@
 const {
-	MessageEmbed,
-	MessageActionRow,
+	EmbedBuilder,
+	ActionRowBuilder,
 	Modal,
-	TextInputComponent,
+	TextInputBuilder,
 } = require("discord.js");
 
 module.exports = {

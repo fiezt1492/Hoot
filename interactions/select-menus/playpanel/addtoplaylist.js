@@ -1,4 +1,4 @@
-const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 
 module.exports = {
 	id: "addtopl",
@@ -25,22 +25,22 @@ module.exports = {
 		let duplicated = exist.dataValues.data.songs.includes(song);
 
 		const components = (state) => [
-			new MessageActionRow().addComponents(
-				new MessageButton()
+			new ActionRowBuilder().addComponents(
+				new ButtonBuilder()
 					.setCustomId("voteYes")
-					.setStyle("SUCCESS")
+					.setStyle(ButtonStyle.Success)
 					.setDisabled(state)
 					.setLabel("Yes"),
-				new MessageButton()
+				new ButtonBuilder()
 					.setCustomId("voteNo")
-					.setStyle("DANGER")
+					.setStyle(ButtonStyle.Danger)
 					.setDisabled(state)
 					.setLabel("No")
 			),
 		];
 
-		const Embed = new MessageEmbed()
-			.setColor("ORANGE")
+		const Embed = new EmbedBuilder()
+			.setColor("Orange")
 			.setTitle(`${client.emotes.warning} CAUTION`)
 			.setDescription(
 				`That song is already been in your **Favorite** playlist! Are you sure that you want to add more?`

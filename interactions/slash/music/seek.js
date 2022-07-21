@@ -1,6 +1,6 @@
 // Deconstructed the constants we need in this file.
 
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
@@ -34,8 +34,8 @@ module.exports = {
 		if (time > queue.songs[0].duration)
 			return interaction.reply({
 				embeds: [
-					new MessageEmbed()
-						.setColor("RED")
+					new EmbedBuilder()
+						.setColor("Red")
 						.setDescription(
 							`The time you entered (second \`${time}\`) is bigger than the song duration (\`${queue.songs[0].duration}\`)`
 						),
@@ -47,8 +47,8 @@ module.exports = {
 
 		interaction.reply({
 			embeds: [
-				new MessageEmbed()
-					.setColor("RANDOM")
+				new EmbedBuilder()
+					.setColor("Random")
 					.setDescription(`Seeked to second \`${time}\``),
 			],
 		});

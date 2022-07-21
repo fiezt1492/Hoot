@@ -1,7 +1,12 @@
 // Declare constants which will be used throughout the bot.
 
 const fs = require("fs");
-const { Client, Collection, Intents } = require("discord.js");
+const {
+	Client,
+	Collection,
+	GatewayIntentBits,
+	// Partials,
+} = require("discord.js");
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v10");
 const { DisTube, ExtractorPlugin } = require("distube");
@@ -11,21 +16,31 @@ const { YtDlpPlugin } = require("@distube/yt-dlp");
 const DB = require("./database/models");
 
 const intents = [
-	"GUILDS",
-	"GUILD_MEMBERS",
-	"GUILD_EMOJIS_AND_STICKERS",
-	"GUILD_INTEGRATIONS",
-	"GUILD_WEBHOOKS",
-	"GUILD_INVITES",
-	"GUILD_VOICE_STATES",
-	"GUILD_PRESENCES",
+	GatewayIntentBits.Guilds,
+	GatewayIntentBits.GuildMembers,
+	GatewayIntentBits.GuildEmojisAndStickers,
+	GatewayIntentBits.GuildIntegrations,
+	GatewayIntentBits.GuildWebhooks,
+	GatewayIntentBits.GuildInvites,
+	GatewayIntentBits.GuildVoiceStates,
+	GatewayIntentBits.GuildPresences,
 ];
+
+// const partials = [
+// 	Partials.Channel,
+// 	Partials.GuildMember,
+// 	Partials.ThreadMember,
+// 	Partials.Message,
+// 	Partials.Reaction,
+// 	Partials.User,
+// ];
 
 // @ts-ignore
 const client = new Client({
 	// Please add all intents you need, more detailed information @ https://ziad87.net/intents/
 	intents: [intents],
 	restTimeOffset: 0,
+	// partials: partials,
 	// shard: "auto",
 	ws: { intents: intents },
 });
@@ -68,7 +83,6 @@ client.distube = new DisTube(client, {
 		new YtDlpPlugin(),
 		new ExtractorPlugin(),
 	],
-	youtubeDL: false,
 });
 // client.commands = new Collection();
 client.slashCommands = new Collection();
@@ -77,7 +91,7 @@ client.selectCommands = new Collection();
 client.contextCommands = new Collection();
 client.modalCommands = new Collection();
 client.cooldowns = new Collection();
-client.working = new Collection();
+client.skiprevious = new Collection();
 // client.triggers = new Collection();
 client.emotes = client.config.emoji;
 client.maxSongs = 100;
@@ -131,7 +145,7 @@ for (const module of slashCommands) {
 		if (client.config.dev !== "on" && command.dev) continue;
 		if (command.skip) continue;
 		if (command.maintain || command.guildOwner)
-			command.data.setDefaultPermission(false);
+			command.data.setDefaultMemberPermissions("0");
 		if (command.dm && command.dm == true) command.data.setDMPermission(true);
 		else if (!command.dm || (command.dm && command.dm == false))
 			command.data.setDMPermission(false);
@@ -289,7 +303,7 @@ const commandJsonData = [
 
 const status = (queue) =>
 	`Volume: ${queue.volume}% | Filter: ${
-		queue.filters.join(", ") || "Off"
+		queue.filters.names.join(", ") || "Off"
 	} | Loop: ${
 		queue.repeatMode
 			? queue.repeatMode === 2
@@ -310,7 +324,7 @@ for (const file of distubeEventFiles) {
 	if (event.skip) continue;
 	if (event.once) {
 		client.distube.once(event.name, (...args) =>
-			event.execute(...args, client, status)
+			event.execute(...args, client)
 		);
 	} else {
 		client.distube.on(

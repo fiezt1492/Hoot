@@ -1,7 +1,7 @@
 // Deconstructed the constants we need in this file.
 // const DisTube = require("DisTube");
 // const _ = require("lodash");
-const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
@@ -64,7 +64,7 @@ module.exports = {
 	// skip: true,
 	async execute(interaction) {
 		const { client } = interaction;
-		const Embed = new MessageEmbed().setColor("RANDOM");
+		const Embed = new EmbedBuilder().setColor("Random");
 		const subcommand = interaction.options.getSubcommand();
 		const name = interaction.options.getString("name");
 		await interaction.deferReply({ ephemeral: true });
@@ -87,7 +87,7 @@ module.exports = {
 		} catch (error) {
 			interaction.editReply({
 				embeds: [
-					Embed.setColor("RED")
+					Embed.setColor("Red")
 						.setTitle("ERROR")
 						.setDescription(`\`\`\`${error.message}\`\`\``),
 				],

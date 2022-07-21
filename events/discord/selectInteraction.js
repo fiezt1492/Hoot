@@ -1,3 +1,5 @@
+const { InteractionType, ComponentType } = require("discord-api-types/v10");
+
 module.exports = {
 	name: "interactionCreate",
 	async execute(interaction) {
@@ -6,7 +8,9 @@ module.exports = {
 
 		// Checks if the interaction is a select menu interaction (to prevent weird bugs)
 
-		if (!interaction.isSelectMenu()) return;
+		if (interaction.type !== InteractionType.MessageComponent) return;
+
+		if (interaction.componentType !== ComponentType.SelectMenu) return;
 
 		const command = client.selectCommands.get(interaction.customId);
 

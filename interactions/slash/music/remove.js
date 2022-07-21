@@ -1,6 +1,6 @@
 // Deconstructed the constants we need in this file.
 
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
@@ -34,8 +34,8 @@ module.exports = {
 		if (position > queue.songs.length - 1)
 			return interaction.reply({
 				embeds: [
-					new MessageEmbed()
-						.setColor("RED")
+					new EmbedBuilder()
+						.setColor("Red")
 						.setDescription(
 							`The position you entered (\`${position}\`) is bigger than the queue length (\`${
 								queue.songs.length - 1
@@ -49,8 +49,8 @@ module.exports = {
 
 		interaction.reply({
 			embeds: [
-				new MessageEmbed()
-					.setColor("RANDOM")
+				new EmbedBuilder()
+					.setColor("Random")
 					.setDescription(
 						`Removed [\`${removed.name}\`](${removed.url}) from the queue.`
 					),

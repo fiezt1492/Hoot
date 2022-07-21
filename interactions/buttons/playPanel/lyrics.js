@@ -1,6 +1,6 @@
 const lyricsFinder = require("lyrics-finder");
 const _ = require("lodash");
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const pageModule = require("../../../modules/util/page");
 
 module.exports = {
@@ -23,9 +23,9 @@ module.exports = {
 		let splitedLyrics = _.chunk(lyrics, 40);
 
 		let pages = splitedLyrics.map((ly) =>
-			new MessageEmbed()
+			new EmbedBuilder()
 				.setTitle(`Lyrics for: ${song}`)
-				.setColor("RANDOM")
+				.setColor("Random")
 				.setDescription(ly.join("\n"))
 		);
 

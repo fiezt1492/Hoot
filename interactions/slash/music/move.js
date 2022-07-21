@@ -1,6 +1,6 @@
 // Deconstructed the constants we need in this file.
 
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
@@ -42,7 +42,7 @@ module.exports = {
 		if (old_position === new_position)
 			return interaction.reply({
 				embeds: [
-					new MessageEmbed().setColor("RED").setDescription(`Nothing changed`),
+					new EmbedBuilder().setColor("Red").setDescription(`Nothing changed`),
 				],
 				ephemeral: true,
 			});
@@ -53,8 +53,8 @@ module.exports = {
 		)
 			return interaction.reply({
 				embeds: [
-					new MessageEmbed()
-						.setColor("RED")
+					new EmbedBuilder()
+						.setColor("Red")
 						.setDescription(
 							`One of two positions you entered (Old: \`${old_position}\`, New: \`${new_position}\`) is bigger than the queue length (\`${
 								queue.songs.length - 1
@@ -81,8 +81,8 @@ module.exports = {
 
 		interaction.reply({
 			embeds: [
-				new MessageEmbed()
-					.setColor("RANDOM")
+				new EmbedBuilder()
+					.setColor("Random")
 					.setDescription(
 						`Moved [\`${song.name}\`](${song.url}) to \`${new_position}\``
 					),
