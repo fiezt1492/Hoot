@@ -1,10 +1,10 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
 	name: "searchNoResult",
-	execute(message, query, client, status) {
-		const Embed = new MessageEmbed()
-			.setColor("RED")
+	execute(message, query, client) {
+		const Embed = new EmbedBuilder()
+			.setColor("Red")
 			.setTitle(`ERROR`)
 			.setDescription(`No result found for \`${query}\`!`);
 			

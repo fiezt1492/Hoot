@@ -1,7 +1,7 @@
 // Deconstructed the constants we need in this file.
 
 const Discord = require("discord.js");
-// const { MessageEmbed, MessageButton, MessageActionRow } = require("discord.js");
+// const { EmbedBuilder, ButtonBuilder, ActionRowBuilder } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
@@ -26,23 +26,29 @@ module.exports = {
 			seconds > 0 ? `${seconds} second${seconds > 1 ? "s" : ""}` : ""
 		}`;
 
-		const Embed = new Discord.MessageEmbed()
-			// .setTitle("🏓 Pong!")
-			.setColor("RANDOM")
-			.addField("Online", "```" + uptime + "```")
-			.addField(
-				"API Latency",
-				"```" + Math.round(client.ws.ping) + "ms" + "```",
-				true
-			)
-			.addField(
-				"Client Latency",
-				"```" +
-					Math.round(Date.now() - interaction.createdTimestamp) +
-					"ms" +
-					"```",
-				true
-			)
+		const Embed = new Discord.EmbedBuilder()
+			.setColor("Random")
+			.addFields([
+				{
+					name: `Online`,
+					value: "```" + uptime + "```",
+					inline: false,
+				},
+				{
+					name: `API Latency`,
+					value: "```" + Math.round(client.ws.ping) + "ms" + "```",
+					inline: true,
+				},
+				{
+					name: `Client Latency`,
+					value:
+						"```" +
+						Math.round(Date.now() - interaction.createdTimestamp) +
+						"ms" +
+						"```",
+					inline: true,
+				},
+			])
 			.setFooter({
 				text: `${interaction.guild.name}'s Shard: #${interaction.guild.shardId}`,
 			});

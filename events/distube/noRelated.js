@@ -1,10 +1,10 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
 	name: "noRelated",
-	execute(queue, client, status) {
-		const Embed = new MessageEmbed()
-			.setColor("RED")
+	execute(queue, client) {
+		const Embed = new EmbedBuilder()
+			.setColor("Red")
 			.setDescription("Can't find related video to play.");
 
 		queue.textChannel.send({

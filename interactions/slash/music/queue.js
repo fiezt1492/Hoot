@@ -1,5 +1,5 @@
 // Deconstructed the constants we need in this file.`
-const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const _ = require("lodash");
 
@@ -37,21 +37,23 @@ module.exports = {
 		const splittedSongs = _.chunk(q, 10);
 
 		const pages = splittedSongs.map((c) =>
-			new MessageEmbed()
+			new EmbedBuilder()
 				.setTitle(`${totalSongs} songs in queue`)
 				.setDescription(`${c.join("\n")}`)
-				.addField(
-					`Now Playing`,
-					`**[${np.name}](${np.url}) - \`${np.formattedDuration}\`**`
-				)
-				.setColor("RANDOM")
+				.addFields([
+					{
+						name: `Now Playing`,
+						value: `**[${np.name}](${np.url}) - \`${np.formattedDuration}\`**`,
+					},
+				])
+				.setColor("Random")
 		);
 
 		if (!pages.length)
 			return interaction.reply({
 				embeds: [
-					new MessageEmbed()
-						.setColor("RANDOM")
+					new EmbedBuilder()
+						.setColor("Random")
 						.setTitle(`Now Playing`)
 						.setDescription(
 							`**[${np.name}](${np.url}) - \`${np.formattedDuration}\`**`

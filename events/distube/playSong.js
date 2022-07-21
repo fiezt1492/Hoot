@@ -1,8 +1,8 @@
-const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js");
 
 module.exports = {
 	name: "playSong",
-	async execute(queue, song, client, status) {
+	async execute(queue, song, client) {
 		const Embed = require("../../constants/embeds/playPanel")(
 			song,
 			queue,
@@ -26,5 +26,7 @@ module.exports = {
 		});
 
 		queue.panelId = msg.id;
+		queue.skipVotes.clear()
+		queue.backVotes.clear()
 	},
 };

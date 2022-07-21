@@ -1,6 +1,6 @@
 // Deconstructed the constants we need in this file.
 
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
@@ -16,8 +16,8 @@ module.exports = {
 
 		client.distube.voices.leave(guild);
 
-		const Embed = new MessageEmbed()
-			.setColor("BLURPLE")
+		const Embed = new EmbedBuilder()
+			.setColor("Blurple")
 			.setDescription("See yah!");
 
 		interaction.reply({

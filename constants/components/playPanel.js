@@ -1,50 +1,50 @@
-const { MessageActionRow, MessageButton } = require("discord.js");
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 
 module.exports = (state, queue, client) => [
-	new MessageActionRow().addComponents(
-		new MessageButton()
+	new ActionRowBuilder().addComponents(
+		new ButtonBuilder()
 			.setCustomId("pause")
 			.setDisabled(state)
 			.setEmoji(client.emotes.playorpause)
-			.setStyle(queue.paused ? "DANGER" : "SECONDARY"),
-		new MessageButton()
+			.setStyle(queue.paused ? ButtonStyle.Danger : ButtonStyle.Secondary),
+		new ButtonBuilder()
 			.setCustomId("next-track")
 			.setDisabled(state)
 			.setEmoji(client.emotes.next)
-			.setStyle("SECONDARY"),
-		new MessageButton()
+			.setStyle(ButtonStyle.Secondary),
+		new ButtonBuilder()
 			.setCustomId("volumeup")
 			.setDisabled(queue.volume >= 100 ? true : state)
 			.setEmoji(client.emotes.volume.high)
-			.setStyle("SECONDARY"),
-		new MessageButton()
+			.setStyle(ButtonStyle.Secondary),
+		new ButtonBuilder()
 			.setCustomId("shuffle")
 			.setDisabled(state)
 			.setEmoji(client.emotes.shuffle)
-			.setStyle("SECONDARY"),
-		new MessageButton()
+			.setStyle(ButtonStyle.Secondary),
+		new ButtonBuilder()
 			.setCustomId("addtopl")
 			.setDisabled(state)
 			.setEmoji(client.emotes.addtoplaylist)
-			.setStyle("PRIMARY")
+			.setStyle(ButtonStyle.Primary)
 	),
-	new MessageActionRow().addComponents(
-		new MessageButton()
+	new ActionRowBuilder().addComponents(
+		new ButtonBuilder()
 			.setCustomId("autoplay")
 			.setDisabled(state)
 			.setEmoji("🅰")
-			.setStyle(queue.autoplay ? "SUCCESS" : "DANGER"),
-		new MessageButton()
+			.setStyle(queue.autoplay ? ButtonStyle.Success : ButtonStyle.Danger),
+		new ButtonBuilder()
 			.setCustomId("pre-track")
 			.setDisabled(state)
 			.setEmoji(client.emotes.previous)
-			.setStyle("SECONDARY"),
-		new MessageButton()
+			.setStyle(ButtonStyle.Secondary),
+		new ButtonBuilder()
 			.setCustomId("volumedown")
 			.setDisabled(queue.volume <= 0 ? true : state)
 			.setEmoji(client.emotes.volume.medium)
-			.setStyle("SECONDARY"),
-		new MessageButton()
+			.setStyle(ButtonStyle.Secondary),
+		new ButtonBuilder()
 			.setCustomId("loop")
 			.setDisabled(state)
 			.setEmoji(
@@ -54,11 +54,11 @@ module.exports = (state, queue, client) => [
 						: client.emotes.loop.song
 					: client.emotes.loop.queue
 			)
-			.setStyle(queue.repeatMode ? "SECONDARY" : "DANGER"),
-		new MessageButton()
+			.setStyle(queue.repeatMode ? ButtonStyle.Secondary : ButtonStyle.Danger),
+		new ButtonBuilder()
 			.setCustomId("lyrics")
 			.setDisabled(state)
 			.setEmoji(client.emotes.lyrics)
-			.setStyle("SECONDARY")
+			.setStyle(ButtonStyle.Secondary)
 	),
 ];

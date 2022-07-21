@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
 	id: "shuffle",
@@ -29,8 +29,8 @@ module.exports = {
 
 		interaction.reply({
 			embeds: [
-				new MessageEmbed()
-					.setColor("BLURPLE")
+				new EmbedBuilder()
+					.setColor("Blurple")
 					.setAuthor({
 						name: `${interaction.user.tag}`,
 						iconURL: `${interaction.user.displayAvatarURL()}`,

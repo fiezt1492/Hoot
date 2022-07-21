@@ -1,8 +1,9 @@
 const {
-	MessageEmbed,
-	MessageActionRow,
+	EmbedBuilder,
+	ActionRowBuilder,
 	Modal,
-	TextInputComponent,
+	TextInputBuilder,
+	TextInputStyle
 } = require("discord.js");
 const { URL } = require("url");
 
@@ -27,19 +28,19 @@ module.exports = {
 				ephemeral: true,
 			});
 
-		const songsInput = new TextInputComponent()
+		const songsInput = new TextInputBuilder()
 			.setCustomId("links")
 			.setRequired(true)
 			.setPlaceholder(
 				"Enter song links...\nSupport YouTube and SoundCloud links only"
 			)
 			.setLabel("Song links (one link per line)")
-			.setStyle("PARAGRAPH");
+			.setStyle(TextInputStyle.Paragraph);
 
 		const modal = new Modal()
 			.setCustomId("pladdsong")
 			.setTitle(`Add song to Playlist`)
-			.addComponents(new MessageActionRow().addComponents(songsInput));
+			.addComponents(new ActionRowBuilder().addComponents(songsInput));
 
 		interaction.showModal(modal);
 

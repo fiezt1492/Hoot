@@ -1,7 +1,7 @@
 const {
-	MessageEmbed,
-	MessageActionRow,
-	MessageSelectMenu,
+	EmbedBuilder,
+	ActionRowBuilder,
+	SelectMenuBuilder,
 } = require("discord.js");
 
 module.exports = {
@@ -33,8 +33,8 @@ module.exports = {
 			value: `${model.dataValues.playlistId}`,
 		}));
 
-		const Embed = new MessageEmbed()
-			.setColor("RANDOM")
+		const Embed = new EmbedBuilder()
+			.setColor("Random")
 			.setTitle(song.name)
 			.setURL(song.url)
 			.setDescription(
@@ -42,8 +42,8 @@ module.exports = {
 			);
 
 		const row = (state) =>
-			new MessageActionRow().addComponents(
-				new MessageSelectMenu()
+			new ActionRowBuilder().addComponents(
+				new SelectMenuBuilder()
 					.setCustomId("addtopl")
 					.setPlaceholder("Select a playlist...")
 					.setDisabled(state)

@@ -8,8 +8,8 @@
 // Deconstructing prefix from config file to use in help command
 const { prefix } = require("./../../config.json");
 
-// Deconstructing MessageEmbed to create embeds within this command
-const { MessageEmbed } = require("discord.js");
+// Deconstructing EmbedBuilder to create embeds within this command
+const { EmbedBuilder } = require("discord.js");
 
 /**
  * @type {import('../../typings').LegacyCommand}
@@ -28,11 +28,11 @@ module.exports = {
 
 		if (!args.length) {
 			/**
-			 * @type {MessageEmbed}
+			 * @type {EmbedBuilder}
 			 * @description Help command embed object
 			 */
 
-			let helpEmbed = new MessageEmbed()
+			let helpEmbed = new EmbedBuilder()
 				.setColor(0x4286f4)
 				.setURL(process.env.URL)
 				.setTitle("List of all my commands")
@@ -91,11 +91,11 @@ module.exports = {
 		}
 
 		/**
-		 * @type {MessageEmbed}
+		 * @type {EmbedBuilder}
 		 * @description Embed of Help command for a specific command.
 		 */
 
-		let commandEmbed = new MessageEmbed()
+		let commandEmbed = new EmbedBuilder()
 			.setColor(0x4286f4)
 			.setTitle("Command Help");
 

@@ -1,6 +1,6 @@
 // Deconstructed the constants we need in this file.
 
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const defaultFilters = Object.keys(require("distube").defaultFilters).map(
 	(mf) => {
@@ -43,20 +43,16 @@ module.exports = {
 
 		const filter = interaction.options.getString("filter");
 
-		// if (filter === "off" && queue.filters.size) queue.filters.clear();
-		// else if (Object.keys(client.distube.filters).includes(filter)) {
-		// 	if (queue.filters.has(filter)) queue.filters.remove(filter);
-		// 	else queue.filters.add(filter);
-		// }
+		if (filter === "off" && queue.filters.size) queue.filters.clear();
+		else if (Object.keys(client.distube.filters).includes(filter)) {
+			if (queue.filters.has(filter)) queue.filters.remove(filter);
+			else queue.filters.add(filter);
+		}
 
-		if (filter === "off" && queue.filters?.length) queue.setFilter(false);
-		else if (Object.keys(client.distube.filters).includes(filter))
-			queue.setFilter(filter);
-
-		const Embed = new MessageEmbed()
-			.setColor("BLURPLE")
+		const Embed = new EmbedBuilder()
+			.setColor("Blurple")
 			.setTitle(`Current Queue Filter`)
-			.setDescription(`\`${queue.filters.join(", ") || "off"}\``);
+			.setDescription(`\`${queue.filters.names.join(", ") || "None"}\``);
 
 		interaction.reply({
 			embeds: [Embed],

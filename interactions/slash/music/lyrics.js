@@ -1,6 +1,6 @@
 // Deconstructed the constants we need in this file.
 
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const pageModule = require("../../../modules/util/page");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const lyricsFinder = require("lyrics-finder");
@@ -61,9 +61,9 @@ module.exports = {
 		let splitedLyrics = _.chunk(lyrics, 40);
 
 		let pages = splitedLyrics.map((ly) =>
-			new MessageEmbed()
+			new EmbedBuilder()
 				.setTitle(`Lyrics for: ${song}`)
-				.setColor("RANDOM")
+				.setColor("Random")
 				.setDescription(ly.join("\n"))
 		);
 

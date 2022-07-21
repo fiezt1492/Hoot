@@ -2,9 +2,9 @@
 // const DisTube = require("DisTube");
 const _ = require("lodash");
 const {
-	MessageEmbed,
-	MessageActionRow,
-	MessageSelectMenu,
+	EmbedBuilder,
+	ActionRowBuilder,
+	SelectMenuBuilder,
 } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 
@@ -26,6 +26,7 @@ module.exports = {
 	category: "music",
 	async execute(interaction) {
 		const { client, message, guild } = interaction;
+		await interaction.deferReply()
 		const string = interaction.options.getString("query");
 
 		const voiceChannel = interaction.member.voice.channel;
@@ -33,11 +34,9 @@ module.exports = {
 		interaction.client.distube.play(voiceChannel, string, {
 			member: interaction.member,
 			textChannel: interaction.channel,
-		});
-
-		await interaction.reply({
-			content: `Adding \`${string}\`...`,
-			ephemeral: true,
+			metadata: {
+				i: interaction,
+			},
 		});
 	},
 	async autocomplete(interaction) {

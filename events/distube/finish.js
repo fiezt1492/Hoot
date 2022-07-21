@@ -1,10 +1,10 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
 	name: "finish",
-	async execute(queue, client, status) {
-		const Embed = new MessageEmbed()
-			.setColor("RED")
+	async execute(queue, client) {
+		const Embed = new EmbedBuilder()
+			.setColor("Red")
 			.setDescription(
 				"This is the end of queue. Add more with `play` command."
 			);

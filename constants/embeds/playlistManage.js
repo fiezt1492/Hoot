@@ -1,17 +1,17 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 module.exports = (songs, name) => [
-	new MessageEmbed()
-		.setColor(name === "Favorite" ? "RED" : "RANDOM")
+	new EmbedBuilder()
+		.setColor("Random")
 		.setTitle(`${name}`)
 		.setDescription(`${songs.length ? `${songs.length}/100 songs` : "Empty"}`),
 ];
 /**
- * const color = name === "Favorite" ? "RED" : "RANDOM";
+ * const color = name === "Favorite" ? "Red" : "Random";
 
 	if (!songs.length)
 		return [
-			new MessageEmbed()
+			new EmbedBuilder()
 				.setColor(color)
 				.setTitle(name)
 				.setDescription("`Empty`")
@@ -37,7 +37,7 @@ module.exports = (songs, name) => [
 	const splittedPlaylistSongs = _.chunk(playlistSongs, 10);
 
 	const pages = splittedPlaylistSongs.map((c) =>
-		new MessageEmbed()
+		new EmbedBuilder()
 			.setTitle(`${playlist.name}`)
 			.setDescription(`${c.join("\n")}`)
 			.setColor(color)

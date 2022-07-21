@@ -1,8 +1,9 @@
 const {
-	MessageEmbed,
-	MessageActionRow,
+	EmbedBuilder,
+	ActionRowBuilder,
 	Modal,
-	TextInputComponent,
+	TextInputBuilder,
+	TextInputStyle,
 } = require("discord.js");
 
 module.exports = {
@@ -31,19 +32,19 @@ module.exports = {
 				ephemeral: true,
 			});
 
-		const newNameInput = new TextInputComponent()
+		const newNameInput = new TextInputBuilder()
 			.setCustomId("name")
 			.setMinLength(2)
 			.setMaxLength(100)
 			.setRequired(true)
 			.setPlaceholder("New playlist name...")
 			.setLabel("What's the new playlist name?")
-			.setStyle("SHORT");
+			.setStyle(TextInputStyle.Short);
 
 		const modal = new Modal()
 			.setCustomId("plrename")
 			.setTitle(`Rename Playlist`)
-			.addComponents(new MessageActionRow().addComponents(newNameInput));
+			.addComponents(new ActionRowBuilder().addComponents(newNameInput));
 
 		interaction.showModal(modal);
 

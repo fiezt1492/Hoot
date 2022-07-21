@@ -1,6 +1,7 @@
 // Deconstructed the constants we need in this file.
 
 const Discord = require("discord.js");
+const { ChannelType } = require("discord-api-types/v10");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
@@ -13,10 +14,7 @@ module.exports = {
 			option
 				.setName("destination")
 				.setDescription("Select a voice channel")
-				.addChannelTypes(
-					Discord.Constants.ChannelTypes.GUILD_STAGE_VOICE,
-					Discord.Constants.ChannelTypes.GUILD_VOICE
-				)
+				.addChannelTypes(ChannelType.GuildStageVoice, ChannelType.GuildVoice)
 		),
 	// inVoiceChannel: true,
 	category: "music",
@@ -39,8 +37,8 @@ module.exports = {
 
 		interaction.reply({
 			embeds: [
-				new Discord.MessageEmbed()
-					.setColor("BLURPLE")
+				new Discord.EmbedBuilder()
+					.setColor("Blurple")
 					.setDescription(`Joined ${voiceChannel}`),
 			],
 			// ephemeral: true,

@@ -1,14 +1,14 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
 	name: "addSong",
-	execute(queue, song, client, status) {
+	async execute(queue, song, client) {
 		if (queue.songs.length - 1 > client.maxSongs) {
 			queue.songs.splice(client.maxSongs + 1).length;
 			return queue.textChannel.send({
 				embeds: [
-					new MessageEmbed()
-						.setColor("RED")
+					new EmbedBuilder()
+						.setColor("Red")
 						.setTitle("FAILED TO ADD SONG")
 						.setDescription(
 							`Cannot add [\`${song.name}\`](${song.url}) to queue as your queue length meets limitation (\`${client.maxSongs}\`).`
@@ -17,8 +17,8 @@ module.exports = {
 			});
 		}
 
-		const Embed = new MessageEmbed()
-			.setColor("RANDOM")
+		const Embed = new EmbedBuilder()
+			.setColor("Random")
 			.setDescription(
 				`Added **[${song.name}](${song.url})** - \`${
 					song.formattedDuration
@@ -27,13 +27,13 @@ module.exports = {
 						? ""
 						: ` at position \`${queue.songs.findIndex((s) => s === song)}\``
 				}`
-			)
-			.setAuthor({
-				name: `${song.user.tag}`,
-				iconURL: `${song.user.displayAvatarURL()}`,
-			});
+			);
+		// .setAuthor({
+		// 	name: `${song.user.tag}`,
+		// 	iconURL: `${song.user.displayAvatarURL()}`,
+		// });
 
-		queue.textChannel.send({
+		await song.metadata.i.editReply({
 			embeds: [Embed],
 		});
 	},

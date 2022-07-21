@@ -1,16 +1,8 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
 	name: "disconnect",
-	async execute(queue, client, status) {
-		// const Embed = new MessageEmbed()
-		// 	.setColor("RED")
-		// 	.setTitle(`ERROR`)
-		// 	.setDescription("Voice channel is empty! Leaving the channel...");
-
-		// queue.textChannel.send({
-		// 	embeds: [Embed],
-		// });
+	async execute(queue, client) {
 		try {
 			if (queue.panelId) {
 				const oldPanel = await queue.textChannel.messages.fetch(queue.panelId);
