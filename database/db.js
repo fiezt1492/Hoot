@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const config = require("../config.json");
-const fs = require("fs");
+// const fs = require("fs");
 
 module.exports = () => {
 	dbType = config.use_database;
