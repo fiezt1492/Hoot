@@ -1,5 +1,5 @@
 const statusChanger = require("../../modules/cron/statusChanger");
-const backup = require("../../modules/cron/backup");
+// const backup = require("../../modules/cron/backup");
 
 module.exports = {
 	name: "ready",
@@ -7,7 +7,7 @@ module.exports = {
 	execute(client) {
 		console.log(`Ready! Logged in as ${client.user.tag}`);
 
-		backup(client);
+		// backup(client);
 		statusChanger(client);
 	},
 };
